@@ -13,6 +13,7 @@ const html="<html><head><title>First node.js app</title></head><body><h1>Greetin
 const server = http.createServer((req, res) => {
   const url = req.url;
   if(url === "/"){   
+    res.setHeader('Content-Type', 'text/html');
     res.write('<html>');
     res.write('<head><title>First node.js app</title></head>');
     res.write('<body><h1>Greetings! You are on root route</h1>');
@@ -23,6 +24,7 @@ const server = http.createServer((req, res) => {
 
   }
   if(url === "/users"){
+    res.setHeader('Content-Type', 'text/html');
     res.write('<html>');
     res.write('<head><title>Users list</title></head>');
     res.write('<body><ul><h1>Users List</h1><li>Mariusz</li><li>Dariusz</li></ul></body>');
@@ -38,20 +40,12 @@ const server = http.createServer((req, res) => {
 
     req.on("end", () => {
       const parsedBody = Buffer.concat(body).toString();
-      console.log(parsedBody);
+      console.log(parsedBody.split("=")[1]);
     });
-    res.write('<html>');
-    res.write('<head><title>First node.js app</title></head>');
-    res.write('<body><h1>Create an user</h1></body>');
-    res.write('</html>');
-    return res.end();
+    res.statusCode = 302;
+    res.setHeader("Location", "/");
+    res.end();
   }
-  //res.setHeader('Content-Type', 'text/html');
-  res.write('<html>');
-  res.write('<head><title>First node.js app</title></head>');
-  res.write('<body><h1>Greetings! You are on Homepage</h1></body>');
-  res.write('</html>');
-  res.end();
 });
 
 server.listen(3000);
