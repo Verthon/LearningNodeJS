@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
+const handle404Controller = require('./controllers/404');
+
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
@@ -15,8 +17,6 @@ app.use(adminRoutes);
 app.use(shopRoutes);
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use((req, res, next) => {
-  res.status(404).render('404', {pageTitle: 'Page not found!'});
-});
+app.use(handle404Controller.handle404);
 
 app.listen(port);
