@@ -3,13 +3,28 @@
 <body>
   <a href="/add-product">Add product</a>
   <h1>Shop</h1>
-  <main>
-    <% if (products.length > 0){ %>
-      <div class="container">
-        <article>
-          <h2><% pageTitle %></h2>
-        </article>
+  <main class="row">
+    <% if (prods.length > 0){ %>
+      <h2>List of products</h2>
+      <% for (let product of prods) { %>
+      <div class="col s12 m7">
+        <div class="card">
+          <div class="card-image">
+            <img src="https://source.unsplash.com/collection/190727/800x500">
+            <h3 class="card-title"><%= product.title %></h3>
+          </div>
+          <div class="card-content">
+            <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+          </div>
+        </div>
       </div>
-    <% } %>
+      <% } %>
+    <% } else { %>
+      <h2>No products found!</h2>
+    <% } %>  
   </main>
   <%- include('includes/end.ejs') %>
