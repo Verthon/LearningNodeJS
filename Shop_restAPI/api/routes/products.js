@@ -1,48 +1,87 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const mongoose = require('mongoose')
+const router = express.Router()
+
+const Product = require('../models/product')
 
 router.get('/', (req, res, next) => {
-  res.status(200).json({
-    message: "Handling GET products"
-  })
-});
+  Product.find()
+    .then(docs => {
+      console.log(docs)
+      res.status(200).json(docs)
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({ error: err })
+    })
+})
 
 router.post('/', (req, res, next) => {
-  const product = {
+  const product = new Product({
+    _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
     price: req.body.price,
-  };
-
-  res.status(201).json({
-    message: "Handling POST products",
-    createdProduct: product,
   })
-});
 
-router.get('/productId', (req, res, next) => {
-  const id = req.params.productID;
-  if(id === 'special') {
-    res.status(200).json({
-      message: 'You have discovered an special ID',
-      id: id,
-    });
-  }else{
-    res.status(200).json({
-      message: 'You have discovered an special ID'
-    });
-  }
-});
+  product.save()
+    .then(result => {
+      console.log(result)
+      res.status(201).json({
+        createdProduct: result,
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({
+        error: err,
+      })
+    })
+})
+
+router.get('/:productId', (req, res, next) => {
+  const id = req.params.productId
+  Product.findById(id)
+    .then(doc => {
+      console.log(doc)
+      if (doc) {
+        res.status(200).json(doc)
+      } else {
+        res.status(404).json({ message: 'Not found product with provided id' })
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({ error: err })
+    })
+})
 
 router.patch('/', (req, res, next) => {
-  res.status(200).json({
-    message: "Handling PATCH products"
-  })
-});
+  const id = req.params.productId;
+  const options = {};
 
-router.delete('/', (req, res, next) => {
-  res.status(200).json({
-    message: "Handling DELETE products"
-  })
-});
+  for (const ops of req.body){
+    options[ops.propName] = ops.value;
+  }
+  Product.patch({ _id: id }, {$set: {options}})
+    .then( res => {
+      console.log(res);
+      res.status(200).json({message: res});
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({error: err})
+    })
+})
 
-module.exports = router;
+router.delete('/:productId', (req, res, next) => {
+  const id = req.params.productId
+  Product.deleteOne({ _id: id })
+    .then(result => {
+      res.status(200).json({ message: result })
+    })
+    .catch(err => {
+      res.status(500).json({ error: err })
+    })
+})
+
+module.exports = router
