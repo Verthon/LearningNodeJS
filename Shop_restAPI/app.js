@@ -34,6 +34,8 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/uploads', express.static('uploads'));
+
 app.use('/products', productRouter);
 app.use('/orders', orderRouter);
 
