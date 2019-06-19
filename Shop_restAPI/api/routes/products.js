@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
 const multer = require('multer');
+const checkAuth = require('../auth/check-auth');
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
@@ -13,23 +14,20 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, callback) => {
-
-  if(file.mimetype === 'image/png' || file.mimetype === 'image/jpeg'){
-    callback(null, true)
-  }
-  else{
+  if (file.mimetype === 'image/png' || file.mimetype === 'image/jpeg') {
+    callback(null, true);
+  } else {
     callback(null, false);
-    callback(new Error('I don\'t have a clue!'))
- 
+    callback(new Error("I don't have a clue!"));
   }
-}
+};
 
 const upload = multer({
   storage: storage,
   limits: {
     fileSize: 1024 * 1024 * 5,
   },
-  fileFilter: fileFilter
+  fileFilter: fileFilter,
 });
 
 const Product = require('../models/product');
@@ -61,7 +59,7 @@ router.get('/', (req, res, next) => {
     });
 });
 
-router.post('/', upload.single('productImage'), (req, res, next) => {
+router.post('/', checkAuth, upload.single('productImage'), (req, res, next) => {
   const product = new Product({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
@@ -116,7 +114,7 @@ router.get('/:productId', (req, res, next) => {
     });
 });
 
-router.patch('/', (req, res, next) => {
+router.patch('/', checkAuth, (req, res, next) => {
   const id = req.params.productId;
   const options = {};
 
@@ -136,7 +134,7 @@ router.patch('/', (req, res, next) => {
     });
 });
 
-router.delete('/:productId', (req, res, next) => {
+router.delete('/:productId', checkAuth, (req, res, next) => {
   const id = req.params.productId;
   Product.deleteOne({ _id: id })
     .then(result => {
