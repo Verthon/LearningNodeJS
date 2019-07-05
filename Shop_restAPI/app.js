@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 const productsRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
-const userRoutes = require('./api/routes//users');
+const userRoutes = require('./api/routes/users');
 
 mongoose.connect(
   'mongodb+srv://root:' +
@@ -42,7 +42,7 @@ app.use('/orders', orderRoutes);
 app.use('/users', userRoutes);
 
 app.use((req, res, next) => {
-  const error = new Error('Not found');
+  const error = new Error('404 Not found(app.js)');
   error.status = 404;
   next(error);
 });

@@ -63,6 +63,7 @@ router.post('/signup', (req, res, next) => {
         bcrypt.hash(req.body.password, 10, (err, hash) => {
           if (err) {
             return res.status(500).json({
+              message: 'error with bcrypt',
               error: err,
             });
           } else {
@@ -96,46 +97,47 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
-  User.find({ email: req.body.email})
+  User.find({ email: req.body.email })
     .then(user => {
-      if(user.length < 1){
+      if (user.length < 1) {
         return res.status(401).json({
-          message: 'Auth failed'
+          message: 'Auth failed, no user with given email and password',
         });
       }
       bcrypt.compare(req.body.password, user[0].password, (err, result) => {
-        if(err){
+        if (err) {
           return res.status(401).json({
-            message: 'Auth failed'
+            message: '401, Auth failed',
           });
         }
 
-        if(result){
-          const token = jwt.sign({
-            email: user[0].email,
-            userId: user[0]._id
-          }, 
-          process.env.JWT_KEY,
-          {
-            expiresIn: '1h'
-          }
-          )
+        if (result) {
+          const token = jwt.sign(
+            {
+              email: user[0].email,
+              userId: user[0]._id,
+            },
+            process.env.JWT_KEY,
+            {
+              expiresIn: '1h',
+            }
+          );
           return res.status(200).json({
             message: 'Auth successful',
-            token: token
+            token: token,
           });
         }
 
         return res.status(401).json({
-          message: 'Auth failed'
+          message: '401, Auth failed',
         });
       });
     })
     .catch(err => {
       res.status(500).json({
-        error: err
-      })
-    })
+        error: err,
+      });
+    });
 });
 
 router.delete('/:userId', (req, res, next) => {
