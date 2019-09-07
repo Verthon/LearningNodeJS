@@ -1,4 +1,5 @@
 const express = require('express');
+const hbs  = require('express-handlebars');
 const server = express();
 const path = require('path');
 const homeRoute = require('./routes');
@@ -9,7 +10,14 @@ const PORT = 3000;
 
 server.use(express.static('public'));
 
-server.set('view engine', 'handlebars');
+server.engine( 'hbs', hbs( { 
+  extname: 'hbs', 
+  defaultLayout: 'index', 
+  layoutsDir: __dirname + '/views',
+  partialsDir: __dirname + '/views/partials/'
+} ) );
+server.set('view engine', 'hbs');
+server.set('views', 'views');
 
 server.use(homeRoute);
 server.use(speakersRoute);
