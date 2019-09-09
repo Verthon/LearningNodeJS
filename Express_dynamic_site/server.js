@@ -1,9 +1,11 @@
 const express = require('express');
-const hbs  = require('express-handlebars');
-const server = express();
-const path = require('path');
+const mongoose = require('mongoose');
 
-//Routes
+const server = express();
+
+const errorController = require('./controllers/error');
+
+// Routes
 const homeRoute = require('./routes');
 const speakersRoute = require('./routes/speakers');
 const faqRoute = require('./routes/faq');
@@ -11,6 +13,7 @@ const pricingRoute = require('./routes/pricing');
 const ticketRoute = require('./routes/buy-ticket');
 const contactRoute = require('./routes/contact');
 const scheduleRoute = require('./routes/schedule');
+const newsRoute = require('./routes/news');
 
 const PORT = 3000;
 
@@ -26,12 +29,13 @@ server.use(pricingRoute);
 server.use(ticketRoute);
 server.use(contactRoute);
 server.use(scheduleRoute);
+server.use(newsRoute);
 
-server.use((req, res, next) => {
-  res.status('404').render('404.ejs', {pageTitle: 'Not Found'});
-});
+server.use(errorController.get404);
 
-
-server.listen(PORT, () => console.log('Listen on port 3000'));
+mongoose
+  .connect('mongodb+srv://admin:piraci1@cluster0-gek5w.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true })
+  .then(() => server.listen(PORT))
+  .catch((err) => console.log(err));
 
 module.export = server;

@@ -3,6 +3,6 @@ const router = express.Router()
 
 const pageController = require('../controllers/pages')
 
-router.get('/contact', pageController.getSinglePage('contact', { pageTitle: 'Contact' }))
+router.get('/about', pageController.getSinglePage('about', { pageTitle: 'About' }))
 
 module.exports = router

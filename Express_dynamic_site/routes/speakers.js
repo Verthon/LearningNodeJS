@@ -1,11 +1,8 @@
-const express = require('express');
-const bodyPareser = require('body-parser');
-const path = require('path');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
+const pageController = require('../controllers/pages')
 
-router.get('/speakers', (req, res) => {
-  return res.render('speakers', {pageTitle: 'Our speakers'});
-});
+router.get('/speakers', pageController.getSinglePage('speakers', { pageTitle: 'Speakers' }))
 
-module.exports = router;
+module.exports = router

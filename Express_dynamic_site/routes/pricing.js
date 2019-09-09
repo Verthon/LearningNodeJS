@@ -1,10 +1,8 @@
-const express = require('express');
-const bodyPareser = require('body-parser');
-const path = require('path');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-router.get('/pricing', (req, res) => {
-  return res.render('pricing', {pageTitle: 'Pricing'});
-});
+const pageController = require('../controllers/pages')
 
-module.exports = router;
+router.get('/pricing', pageController.getSinglePage('pricing', { pageTitle: 'Pricing' }))
+
+module.exports = router
