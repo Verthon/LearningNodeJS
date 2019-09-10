@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 const speakerSchema = new Schema({
   id: { type: Number, required: true },
@@ -9,7 +9,7 @@ const speakerSchema = new Schema({
   description: { type: String, required: true },
   skills: { type: Array, require: true },
   personalInfo: { type: Object, required: true },
-  socials: { type: Array, required: false },
-});
+  socials: { type: Array, required: false }
+})
 
-module.exports = mongoose.model('Speaker', speakerSchema);
+module.exports = mongoose.model('Speaker', speakerSchema)

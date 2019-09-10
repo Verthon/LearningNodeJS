@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js --exec \"npm run lint && node\"",
+    "start": "nodemon server.js",
     "lint": "eslint **/*.js"
   },
+  "prettier": "prettier-config-standard",
   "author": "",
   "license": "MIT",
   "dependencies": {
@@ -18,13 +19,15 @@
     "mongoose": "^5.6.13"
   },
   "devDependencies": {
-    "eslint": "^6.1.0",
+    "eslint": "^6.3.0",
     "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-standard": "^14.1.0",
     "eslint-plugin-ejs": "0.0.2",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.14.3",
-    "eslint-plugin-react-hooks": "^1.7.0",
-    "nodemon": "^1.19.2"
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "nodemon": "^1.19.2",
+    "prettier-config-standard": "^1.0.1"
   }
 }

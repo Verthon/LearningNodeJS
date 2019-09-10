@@ -1,8 +1,9 @@
-class Newsletter {
-  constructor(id, email) {
-    this.id = id;
-    this.email = email;
-  }
-}
+const mongoose = require('mongoose')
 
-module.exports = Newsletter;
+const Schema = mongoose.Schema
+
+const newsletterSchema = new Schema({
+  email: { type: String, required: true }
+})
+
+module.exports = mongoose.model('Newsletter', newsletterSchema)

@@ -1,15 +1,16 @@
-const express = require('express');
+const express = require('express')
+const router = express.Router()
+const pageController = require('../controllers/pages')
+const newsletterController = require('../controllers/newsletter')
 
-const router = express.Router();
+router.get(
+  '/',
+  pageController.getSinglePage('index', {
+    pageTitle: 'Homepage',
+    links: ['speakers', 'about-us', 'schedule', 'news']
+  })
+)
 
-const Newsletter = require('../model/newsletter');
-const pageController = require('../controllers/pages');
+router.post('/', newsletterController.getNewsletter)
 
-router.get('/', pageController.getSinglePage('index', { pageTitle: 'Homepage', links: ['speakers', 'about-us', 'schedule', 'news'] }));
-
-router.post('/', (req, res, next) => {
-  const newsletter = new Newsletter(req.body.newsletter);
-  return newsletter;
-})
-
-module.exports = router;
+module.exports = router
