@@ -5,7 +5,7 @@ const router = express.Router()
 const pageController = require('../controllers/pages')
 
 router.get(
-  '/buy-ticket',
+  '/checkout',
   pageController.getSinglePage('checkout', { pageTitle: 'Checkout' })
 )
 

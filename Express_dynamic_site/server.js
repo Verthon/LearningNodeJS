@@ -16,6 +16,7 @@ const contactRoute = require('./routes/contact')
 const scheduleRoute = require('./routes/schedule')
 const newsRoute = require('./routes/news')
 const checkoutRoute = require('./routes/checkout')
+const aboutRoute = require('./routes/about')
 
 const PORT = 3000
 
@@ -37,6 +38,7 @@ server.use(contactRoute)
 server.use(scheduleRoute)
 server.use(newsRoute)
 server.use(checkoutRoute)
+server.use(aboutRoute)
 
 server.use(errorController.get404)
 
