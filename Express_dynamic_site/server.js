@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+require('dotenv').config()
 
 const server = express()
 
@@ -44,7 +45,7 @@ server.use(errorController.get404)
 
 mongoose
   .connect(
-    'mongodb+srv://admin:piraci1@cluster0-gek5w.mongodb.net/app?retryWrites=true&w=majority',
+    'mongodb+srv://' + process.env.DB_USER + ':' + process.env.DB_PASS + '@' + process.env.DB_CLUSTER + '?retryWrites=true&w=majority',
     { useNewUrlParser: true }
   )
   .then(() => server.listen(PORT))

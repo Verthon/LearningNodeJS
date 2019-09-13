@@ -19,7 +19,7 @@ exports.getSpeaker = (req, res, next) => {
   speaker
     .save()
     .then(res => {
-      console.log('Speaker added to mailing list', res)
+      console.log('Speaker added', res)
     })
     .catch(err => {
       console.log(err)
