@@ -7,7 +7,10 @@ const buyTicketController = require('../controllers/buyTicket')
 
 router.get(
   '/buy-ticket',
-  pageController.getSinglePage('buy-ticket', { pageTitle: 'Buy ticket' })
+  pageController.getSinglePage('buy-ticket', {
+    pageTitle: 'Buy ticket',
+    links: ['speakers', 'about', 'schedule', 'news', 'contact']
+  })
 )
 
 router.post('buy-ticket', buyTicketController.buyTicket)

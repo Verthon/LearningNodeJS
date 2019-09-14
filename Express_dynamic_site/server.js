@@ -10,7 +10,6 @@ const errorController = require('./controllers/error')
 // Routes
 const homeRoute = require('./routes')
 const speakersRoute = require('./routes/speakers')
-const faqRoute = require('./routes/faq')
 const pricingRoute = require('./routes/pricing')
 const ticketRoute = require('./routes/buy-ticket')
 const contactRoute = require('./routes/contact')
@@ -32,7 +31,6 @@ server.use(bodyParser.urlencoded({ // to support URL-encoded bodies
 
 server.use(homeRoute)
 server.use(speakersRoute)
-server.use(faqRoute)
 server.use(pricingRoute)
 server.use(ticketRoute)
 server.use(contactRoute)

@@ -3,6 +3,12 @@ const router = express.Router()
 
 const pageController = require('../controllers/pages')
 
-router.get('/pricing', pageController.getSinglePage('pricing', { pageTitle: 'Pricing' }))
+router.get(
+  '/pricing',
+  pageController.getSinglePage('pricing', {
+    pageTitle: 'Pricing',
+    links: ['speakers', 'about', 'schedule', 'news', 'contact']
+  })
+)
 
 module.exports = router

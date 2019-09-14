@@ -577,6 +577,7 @@ select.form-control:not([size]):not([multiple]) {
   padding-right: 20px;
   font-size: 1.06rem;
   font-family: "Montserrat", sans-serif;
+  text-transform: capitalize;
 }
 
 @media (max-width: 1024px) {

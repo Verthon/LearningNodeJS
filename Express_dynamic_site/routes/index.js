@@ -7,7 +7,7 @@ router.get(
   '/',
   pageController.getSinglePage('index', {
     pageTitle: 'Homepage',
-    links: ['speakers', 'about-us', 'schedule', 'news']
+    links: ['speakers', 'about', 'schedule', 'news', 'contact']
   })
 )
 
