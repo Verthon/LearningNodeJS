@@ -9,7 +9,7 @@ router.get(
   '/buy-ticket',
   pageController.getSinglePage('buy-ticket', {
     pageTitle: 'Buy ticket',
-    links: ['speakers', 'about', 'schedule', 'news', 'contact']
+    links: ['speakers', 'about', 'schedule', 'contact']
   })
 )
 

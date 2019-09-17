@@ -15,7 +15,7 @@ exports.sendContactInfo = (req, res, next) => {
   contact
     .save()
     .then(res => {
-      console.log('Email added to mailing list', res)
+      console.log('Form contact sent', res)
     })
     .catch(err => {
       console.log(err)

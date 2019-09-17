@@ -5,7 +5,7 @@ const pageController = require('../controllers/pages')
 
 router.get('/about', pageController.getSinglePage('about', {
   pageTitle: 'About',
-  links: ['speakers', 'about', 'schedule', 'news', 'contact']
+  links: ['speakers', 'about', 'schedule', 'contact']
 }))
 
 module.exports = router

@@ -1,6 +1,6 @@
 const Speaker = require('../model/Speaker')
 
-exports.getSpeaker = (req, res, next) => {
+exports.addSpeaker = (req, res, next) => {
   console.log(req.body)
   const name = req.body.name
   const title = req.body.title

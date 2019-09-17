@@ -8,7 +8,7 @@ router.get(
   '/speakers',
   pageController.getSinglePage('speakers', {
     pageTitle: 'Speakers',
-    links: ['speakers', 'about', 'schedule', 'news', 'contact']
+    links: ['speakers', 'about', 'schedule', 'contact']
   })
 )
 router.get('/speakers', speakersController.getAllSpeakers)
