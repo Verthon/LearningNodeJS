@@ -1,4 +1,4 @@
-const Contact = require('../model/Contact')
+const Contact = require('../model/contact')
 
 exports.sendContactInfo = (req, res, next) => {
   console.log(req.body)

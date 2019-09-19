@@ -1,4 +1,4 @@
-const Speaker = require('../model/Speaker')
+const Speaker = require('../model/speaker')
 
 exports.addSpeaker = (req, res, next) => {
   console.log(req.body)
