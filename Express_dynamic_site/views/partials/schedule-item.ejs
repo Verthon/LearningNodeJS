@@ -3,16 +3,16 @@
     <!-- time -->
     <div class="time">
       <i class="fa fa-clock-o"></i>
-      <span class="time"><% time %></span>
+      <span class="time"><%= data.time %></span>
     </div>
     <!-- Speaker -->
     <div class="speaker">
-      <img src="images/speakers/speaker-thumb-one.jpg" alt="speaker-thumb-one">
-    <span class="name"><% name %></span>
+      <img src="<%= data.img %>" alt="speaker-thumb-one">
+    <span class="name"><%= data.name %></span>
     </div>
     <!-- Subject -->
-    <div class="subject"><% subject %></div>
+    <div class="subject"><%= data.subject %></div>
     <!-- Venue -->
-    <div class="venue"><% venue %></div>
+    <div class="venue"><%= data.venue %></div>
   </div>
 </li>

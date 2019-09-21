@@ -1,39 +1,40 @@
-const details = [
-	{
-		time: '9.00 AM',
-		img: 'images/speakers/speaker-thumb-one.jpg',
-		name: 'Samanta Doe',
-		subject: 'Introduction to Wp',
-		venue: 'Auditorium A'
-	},
-	{
-		time: '9.00 AM',
-		img: 'images/speakers/speaker-thumb-one.jpg',
-		name: 'Samanta Doe',
-		subject: 'Introduction to Wp',
-		venue: 'Auditorium A'
-	},
-	{
-		time: '9.00 AM',
-		img: 'images/speakers/speaker-thumb-one.jpg',
-		name: 'Samanta Doe',
-		subject: 'Introduction to Wp',
-		venue: 'Auditorium A'
-	},
-	{
-		time: '9.00 AM',
-		img: 'images/speakers/speaker-thumb-one.jpg',
-		name: 'Samanta Doe',
-		subject: 'Introduction to Wp',
-		venue: 'Auditorium A'
-	},
-	{
-		time: '9.00 AM',
-		img: 'images/speakers/speaker-thumb-one.jpg',
-		name: 'Samanta Doe',
-		subject: 'Introduction to Wp',
-		venue: 'Auditorium A'
-	}
+<% 
+const details = [{
+    time: '9.00 AM',
+    img: 'images/speakers/speaker-thumb-one.jpg',
+    name: 'Samanta Doe',
+    subject: 'Introduction to Wp',
+    venue: 'Auditorium A'
+  },
+  {
+    time: '10.00 AM',
+    img: 'images/speakers/speaker-thumb-two.jpg',
+    name: 'Zerad Pawel',
+    subject: 'Principle of Wp',
+    venue: 'Auditorium B'
+  },
+  {
+    time: '12.00 AM',
+    img: 'images/speakers/speaker-thumb-three.jpg',
+    name: 'Henry Mong',
+    subject: 'Introduction to Wp',
+    venue: 'Auditorium A'
+  },
+  {
+    time: '2.00 PM',
+    img: 'images/speakers/speaker-thumb-four.jpg',
+    name: 'Baily Leo',
+    subject: 'Introduction to Wp',
+    venue: 'Auditorium C'
+  },
+  {
+    time: '3.00 AM',
+    img: 'images/speakers/speaker-thumb-five.jpg',
+    name: 'Lee Mun',
+    subject: 'Introduction to Wp',
+    venue: 'Auditorium E'
+  }] 
+%>
 
 <section class="section schedule">
 	<div class="container">
@@ -80,120 +81,11 @@ const details = [
 					  			<div class="subject">Subject</div>
 					  			<div class="venue">Venue</div>
 					  		</li>
-					  		<!-- Schedule Details -->
-					  		<li class="schedule-details">
-					  			<div class="block">
-					  				<!-- time -->
-							  		<div class="time">
-							  			<i class="fa fa-clock-o"></i>
-							  			<span class="time">9.00 AM</span>
-							  		</div>
-							  		<!-- Speaker -->
-							  		<div class="speaker">
-							  			<img src="images/speakers/speaker-thumb-one.jpg" alt="speaker-thumb-one">
-										<span class="name">Samanta Doe</span>
-							  		</div>
-							  		<!-- Subject -->
-							  		<div class="subject">Introduction to Wp</div>
-							  		<!-- Venue -->
-							  		<div class="venue">Auditorium A</div>
-					  			</div>
-					  		</li>
-					  		<!-- Schedule Details -->
-					  		<li class="schedule-details">
-					  			<div class="block">
-						  			<!-- time -->
-							  		<div class="time">
-							  			<i class="fa fa-clock-o"></i>
-							  			<span class="time">10.00 AM</span>
-							  		</div>
-							  		<!-- Speaker -->
-							  		<div class="speaker">
-							  			<img src="images/speakers/speaker-thumb-two.jpg" alt="speaker-thumb-two">
-										<span class="name">Zerad Pawel</span>
-							  		</div>
-							  		<!-- Subject -->
-							  		<div class="subject">Principle of Wp</div>
-							  		<!-- Venue -->
-							  		<div class="venue">Auditorium B</div>
-					  			</div>
-					  		</li>
-					  		<!-- Schedule Details -->
-					  		<li class="schedule-details">
-					  			<div class="block">
-						  			<!-- time -->
-							  		<div class="time">
-							  			<i class="fa fa-clock-o"></i>
-							  			<span class="time">12.00 AM</span>
-							  		</div>
-							  		<!-- Speaker -->
-							  		<div class="speaker">
-							  			<img src="images/speakers/speaker-thumb-three.jpg" alt="speaker-thumb-three">
-										<span class="name">Henry Mong</span>
-							  		</div>
-							  		<!-- Subject -->
-							  		<div class="subject">Wp Requirements</div>
-							  		<!-- Venue -->
-							  		<div class="venue">Auditorium C</div>
-					  			</div>
-					  		</li>
-					  		<!-- Schedule Details -->
-					  		<li class="schedule-details">
-					  			<div class="block">
-						  			<!-- time -->
-							  		<div class="time">
-							  			<i class="fa fa-clock-o"></i>
-							  			<span class="time">2.00 PM</span>
-							  		</div>
-							  		<!-- Speaker -->
-							  		<div class="speaker">
-							  			<img src="images/speakers/speaker-thumb-four.jpg" alt="speaker-thumb-four">
-										<span class="name">Baily Leo</span>
-							  		</div>
-							  		<!-- Subject -->
-							  		<div class="subject">Introduction to Wp</div>
-							  		<!-- Venue -->
-							  		<div class="venue">Auditorium D</div>
-					  			</div>
-					  		</li>
-					  		<!-- Schedule Details -->
-					  		<li class="schedule-details">
-					  			<div class="block">
-						  			<!-- time -->
-							  		<div class="time">
-							  			<i class="fa fa-clock-o"></i>
-							  			<span class="time">3.00 PM</span>
-							  		</div>
-							  		<!-- Speaker -->
-							  		<div class="speaker">
-							  			<img src="images/speakers/speaker-thumb-five.jpg" alt="speaker-thumb-five">
-										<span class="name">Lee Mun</span>
-							  		</div>
-							  		<!-- Subject -->
-							  		<div class="subject">Useful tips for Wp</div>
-							  		<!-- Venue -->
-							  		<div class="venue">Auditorium E</div>
-					  			</div>
-					  		</li>
-					  		<!-- Schedule Details -->
-					  		<li class="schedule-details">
-					  			<div class="block">
-						  			<!-- time -->
-							  		<div class="time">
-							  			<i class="fa fa-clock-o"></i>
-							  			<span class="time">3.00 PM</span>
-							  		</div>
-							  		<!-- Speaker -->
-							  		<div class="speaker">
-							  			<img src="images/speakers/speaker-thumb-six.jpg" alt="speaker-thumb-six">
-										<span class="name">Lee Mun</span>
-							  		</div>
-							  		<!-- Subject -->
-							  		<div class="subject">Useful tips for Wp</div>
-							  		<!-- Venue -->
-							  		<div class="venue">Auditorium E</div>
-					  			</div>
-					  		</li>
+								<!-- Schedule Details -->
+								<% details.map(item => { %>
+									<%- include('./partials/schedule-item.ejs', {data: item})%>
+								<% }) %>
+					  		
 					  	</ul>
 					  </div>
 					  <div class="tab-pane fade schedule-item" id="nov21">
