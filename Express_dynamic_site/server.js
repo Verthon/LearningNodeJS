@@ -1,9 +1,23 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const session = require('express-session')
+const MongoDBStore = require('connect-mongodb-session')(session)
 require('dotenv').config()
 
+const MONGO_URI =
+  'mongodb+srv://' +
+  process.env.DB_USER +
+  ':' +
+  process.env.DB_PASS +
+  '@' +
+  process.env.DB_CLUSTER +
+  '?retryWrites=true&w=majority'
 const server = express()
+const store = new MongoDBStore({
+  uri: MONGO_URI,
+  collection: 'sessions'
+})
 
 const errorController = require('./controllers/error')
 
@@ -20,13 +34,24 @@ const aboutRoute = require('./routes/about')
 const PORT = 3000
 
 server.use(express.static('public'))
+server.use(
+  session({
+    secret: 'admin',
+    resave: false,
+    saveUninitialized: false,
+    store: store
+  })
+)
 
 server.set('view engine', 'ejs')
 server.set('views', 'views')
 
-server.use(bodyParser.urlencoded({ // to support URL-encoded bodies
-  extended: true
-}))
+server.use(
+  bodyParser.urlencoded({
+    // to support URL-encoded bodies
+    extended: true
+  })
+)
 
 server.use(homeRoute)
 server.use(speakersRoute)
@@ -40,10 +65,7 @@ server.use(aboutRoute)
 server.use(errorController.get404)
 
 mongoose
-  .connect(
-    'mongodb+srv://' + process.env.DB_USER + ':' + process.env.DB_PASS + '@' + process.env.DB_CLUSTER + '?retryWrites=true&w=majority',
-    { useNewUrlParser: true }
-  )
+  .connect(MONGO_URI)
   .then(() => server.listen(PORT))
   .catch(err => console.log(err))
 
