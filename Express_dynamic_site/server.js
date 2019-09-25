@@ -48,24 +48,23 @@ server.set('views', 'views')
 
 server.use(
   bodyParser.urlencoded({
-    // to support URL-encoded bodies
     extended: true
   })
 )
 
 server.use(homeRoute)
 server.use(speakersRoute)
-server.use(pricingRoute)
-server.use(ticketRoute)
+// server.use(pricingRoute)
+// server.use(ticketRoute)
 server.use(contactRoute)
 server.use(scheduleRoute)
-server.use(checkoutRoute)
-server.use(aboutRoute)
+//server.use(checkoutRoute)
+//server.use(aboutRoute)
 
 server.use(errorController.get404)
 
 mongoose
-  .connect(MONGO_URI)
+  .connect(MONGO_URI, { useNewUrlParser: true })
   .then(() => server.listen(PORT))
   .catch(err => console.log(err))
 

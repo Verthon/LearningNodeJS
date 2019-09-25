@@ -1,7 +1,6 @@
 const Speaker = require('../model/speaker')
 
 exports.addSpeaker = (req, res, next) => {
-  console.log(req.body)
   const name = req.body.name
   const title = req.body.title
   const description = req.body.description
@@ -29,11 +28,25 @@ exports.addSpeaker = (req, res, next) => {
 exports.getAllSpeakers = (req, res, next) => {
   Speaker.find()
     .then(speakers => {
-      console.log(speakers)
-      res.render('/speakers', {
-        speakers: speakers,
-        pageTitle: 'Speakers'
+      res.render('speakers', {
+        pageTitle: 'Speakers',
+        links: ['speakers', 'about', 'schedule', 'contact'],
+        speakers: speakers
       })
+    })
+    .catch(err => console.log(err))
+}
+
+exports.getSpeaker = (req, res, next) => {
+  const prodId = req.params.speakerId
+  Speaker.findById(prodId)
+    .then(speaker => {
+      res.render('single-speaker', {
+        speaker: speaker,
+        pageTitle: speaker.title,
+        path: '/speakers'
+      })
+      next()
     })
     .catch(err => console.log(err))
 }

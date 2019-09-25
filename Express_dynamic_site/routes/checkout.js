@@ -1,12 +1,10 @@
-const express = require('express')
+// const express = require('express')
 
-const router = express.Router()
+// const router = express.Router()
 
-const pageController = require('../controllers/pages')
+// router.get(
+//   '/checkout',
+//   pageController.getSinglePage('checkout', { pageTitle: 'Checkout', links: ['speakers', 'about', 'schedule', 'contact'] })
+// )
 
-router.get(
-  '/checkout',
-  pageController.getSinglePage('checkout', { pageTitle: 'Checkout', links: ['speakers', 'about', 'schedule', 'contact'] })
-)
-
-module.exports = router
+// module.exports = router

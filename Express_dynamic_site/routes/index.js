@@ -1,15 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const pageController = require('../controllers/pages')
 const newsletterController = require('../controllers/newsletter')
+const speakerController = require('../controllers/speakers')
+const scheduleController = require('../controllers/schedule')
 
-router.get(
-  '/',
-  pageController.getSinglePage('index', {
-    pageTitle: 'Homepage',
-    links: ['speakers', 'about', 'schedule', 'contact']
-  })
-)
+router.route('/')
+  .get(speakerController.getAllSpeakers)
+  .get(scheduleController.getSchedule)
 
 router.post('/', newsletterController.getNewsletter)
 

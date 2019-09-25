@@ -1,38 +1,3 @@
-<% 
-const data = [
-	{
-		img: 'images/speakers/speaker-one.jpg',
-		title: 'CEO of Company1',
-		name: 'Jane Smith'
-	},
-	{
-		img: 'images/speakers/speaker-two.jpg',
-		title: 'Software Developer',
-		name: 'Matt Johansson'
-	},
-	{
-		img: 'images/speakers/speaker-three.jpg',
-		title: 'Cloud Engineer',
-		name: 'Erica Targett'
-	},
-	{
-		img: 'images/speakers/speaker-four.jpg',
-		title: 'Web Designer',
-		name: 'Brian Tomphson'
-	},
-	{
-		img: 'images/speakers/speaker-five.jpg',
-		title: 'Frontend Developer',
-		name: 'Johnathan Franco'
-	},
-	{
-		img: 'images/speakers/speaker-six.jpg',
-		title: 'Senior PHP Developer',
-		name: 'Lisa Bailey'
-	},
-] 
-%>
-
 <% include partials/header %>
 <% include partials/navigation %>
 <!--================================
@@ -74,7 +39,7 @@ const data = [
 			</div>
 		</div>
 		<div class="row">
-			<% data.map(speaker => { %>
+			<% speakers.map(speaker => { %>
 				<%- include('partials/speaker', {speaker:speaker}) %>
 			<% }) %>
 		</div>

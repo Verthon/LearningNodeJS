@@ -1,14 +1,6 @@
-const express = require('express')
-const router = express.Router()
+// const express = require('express')
+// const router = express.Router()
 
-const pageController = require('../controllers/pages')
+// router.get('/pricing',)
 
-router.get(
-  '/pricing',
-  pageController.getSinglePage('pricing', {
-    pageTitle: 'Pricing',
-    links: ['speakers', 'about', 'schedule', 'contact']
-  })
-)
-
-module.exports = router
+// module.exports = router

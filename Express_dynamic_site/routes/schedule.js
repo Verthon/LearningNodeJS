@@ -1,14 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-const pageController = require('../controllers/pages')
+const scheduleController = require('../controllers/schedule')
 
-router.get(
-  '/schedule',
-  pageController.getSinglePage('schedule', {
-    pageTitle: 'Schedule',
-    links: ['speakers', 'about', 'schedule', 'contact']
-  })
-)
+router.get('/schedule', scheduleController.getSchedule)
 
 module.exports = router

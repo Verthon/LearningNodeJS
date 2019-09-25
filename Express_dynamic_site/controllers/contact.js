@@ -1,5 +1,13 @@
 const Contact = require('../model/contact')
 
+exports.getContact = (req, res, next) => {
+  res.render('contact', {
+    pageTitle: 'Contact',
+    links: ['speakers', 'about', 'schedule', 'contact']
+  }
+  )
+}
+
 exports.sendContactInfo = (req, res, next) => {
   console.log(req.body)
   const email = req.body.email

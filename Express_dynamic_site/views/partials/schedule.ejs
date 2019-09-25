@@ -1,43 +1,3 @@
-<% 
-const details = [
-	{
-    time: '9.00 AM',
-    img: 'images/speakers/speaker-thumb-one.jpg',
-    name: 'Jane Smith',
-    subject: 'Introduction to Wp',
-    venue: 'Auditorium A'
-  },
-  {
-    time: '10.00 AM',
-    img: 'images/speakers/speaker-thumb-two.jpg',
-    name: 'Brian Tomphson',
-    subject: 'Principle of Wp',
-    venue: 'Auditorium B'
-  },
-  {
-    time: '12.00 AM',
-    img: 'images/speakers/speaker-thumb-three.jpg',
-    name: 'Matt Johansson',
-    subject: 'Introduction to Wp',
-    venue: 'Auditorium A'
-  },
-  {
-    time: '2.00 PM',
-    img: 'images/speakers/speaker-thumb-four.jpg',
-    name: 'Lisa Bailey',
-    subject: 'Introduction to Wp',
-    venue: 'Auditorium C'
-  },
-  {
-    time: '3.00 AM',
-    img: 'images/speakers/speaker-thumb-five.jpg',
-    name: 'Jonatan Franco',
-    subject: 'Introduction to Wp',
-    venue: 'Auditorium E'
-	}
-] 
-%>
-
 <section class="section schedule">
 	<div class="container">
 		<div class="row">
@@ -84,7 +44,7 @@ const details = [
 					  			<div class="venue">Venue</div>
 					  		</li>
 								<!-- Schedule Details -->
-								<% details.map(item => { %>
+								<% schedule.map(item => { %>
 									<%- include('./partials/schedule-item.ejs', {data: item})%>
 								<% }) %>
 					  		
