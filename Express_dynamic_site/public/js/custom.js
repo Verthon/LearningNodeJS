@@ -1,5 +1,44 @@
-(function ($) {
+;(function ($) {
   'use strict'
+  console.log($)
+  $('#contact-form').on('submit', e => {
+    e.preventDefault()
+    const $name = $('#name')
+    const $email = $('#email')
+    const $phone = $('#phone')
+    const $message = $('#message')
+    console.log($message.val())
+    $.ajax({
+      url: '/contact',
+      method: 'post',
+      data: {
+        name: $name.val(),
+        email: $email.val(),
+        phone: $phone.val(),
+        message: $message.val()
+      }
+    })
+      .done((response) => {
+        console.log(response)
+      })
+      .fail(() => {
+        $('.form-message').text('Error occured')
+      })
+  })
+  // $('#contact-btn').on('click', e => {
+  //   e.preventDefault()
+  //   $.ajax({
+  //     url: '/contact',
+  //     method: 'post',
+  //     data: {}
+  //   })
+  //     .done((response) => {
+  //       console.log(response)
+  //     })
+  //     .fail(() => {
+  //       $('.form-message').html('Wystąpił błąd')
+  //     })
+  // })
 
   $(document).on('ready', function () {
     // -----------------------------
@@ -75,9 +114,9 @@
     // Mixitup
     // -----------------------------
     var containerEl = document.querySelector('.gallery-wrapper')
-    var mixer
+    var mixer = null
     if (containerEl) {
       mixer = mixitup(containerEl)
     }
   })
-}) (jQuery)
+})(jQuery)

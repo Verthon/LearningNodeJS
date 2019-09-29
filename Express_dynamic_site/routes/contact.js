@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { check } = require('express-validator')
+const { body } = require('express-validator')
 
 const contactController = require('../controllers/contact')
 
@@ -8,15 +8,13 @@ router.get('/contact', contactController.getContact)
 router.post(
   '/contact',
   [
-    check('email')
+    body('email')
       .isEmail()
-      .withMessage('Please provide correct email'),
-    check('name')
-      .not()
-      .isEmpty()
+      .normalizeEmail(),
+    body('name').isString(),
+    body('message')
+      .isLength({ min: 5, max: 400 })
       .trim()
-      .escape()
-      .withMessage()
   ],
   contactController.sendContactInfo
 )

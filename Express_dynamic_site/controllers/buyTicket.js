@@ -1,5 +1,12 @@
 const Ticket = require('../model/ticket')
 
+exports.getBuyTicket = (req, res, next) => {
+  res.render('buy-ticket', {
+    pageTitle: 'Buy ticket',
+    links: ['speakers', 'about', 'schedule', 'contact']
+  })
+}
+
 exports.buyTicket = (req, res, next) => {
   const name = req.body.name
   const price = req.body.price

@@ -55,11 +55,11 @@ server.use(
 server.use(homeRoute)
 server.use(speakersRoute)
 // server.use(pricingRoute)
-// server.use(ticketRoute)
+server.use(ticketRoute)
 server.use(contactRoute)
 server.use(scheduleRoute)
 //server.use(checkoutRoute)
-//server.use(aboutRoute)
+server.use(aboutRoute)
 
 server.use(errorController.get404)
 
