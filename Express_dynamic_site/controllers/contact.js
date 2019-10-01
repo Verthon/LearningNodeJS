@@ -8,7 +8,7 @@ exports.getContact = (req, res, next) => {
   res.render('contact', {
     pageTitle: 'Contact',
     links: ['speakers', 'about', 'schedule', 'contact'],
-    hasError: false
+    errorMessage: false
   })
 }
 
@@ -19,6 +19,7 @@ exports.sendContactInfo = (req, res, next) => {
   const phone = req.body.phone
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
+    console.log(errors)
     return res.status(422).render('contact', {
       pageTitle: 'Contact',
       links: ['speakers', 'about', 'schedule', 'contact'],
@@ -33,6 +34,7 @@ exports.sendContactInfo = (req, res, next) => {
     message: message,
     phone: phone
   })
+  console.log(contact)
   contact
     .save()
     .then(res => {

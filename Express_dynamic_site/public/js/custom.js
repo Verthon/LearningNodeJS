@@ -1,13 +1,30 @@
 ;(function ($) {
   'use strict'
-  console.log($)
+  $('#newsletter-form').on('submit', e => {
+    e.preventDefault()
+    const $email = $('#email')
+    console.log('Email: ', $email)
+    $.ajax({
+      url: '/',
+      method: 'post',
+      data: {
+        email: $email.val()
+      }
+    })
+      .done(response => {
+        console.log(response)
+      })
+      .fail(() => {
+        $('.form-message').text('Error occured')
+      })
+  })
   $('#contact-form').on('submit', e => {
     e.preventDefault()
     const $name = $('#name')
     const $email = $('#email')
     const $phone = $('#phone')
     const $message = $('#message')
-    console.log($message.val())
+    console.log('Message value: ', $message.val())
     $.ajax({
       url: '/contact',
       method: 'post',
@@ -18,7 +35,7 @@
         message: $message.val()
       }
     })
-      .done((response) => {
+      .done(response => {
         console.log(response)
       })
       .fail(() => {

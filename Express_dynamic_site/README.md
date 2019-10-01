@@ -6,3 +6,4 @@ Simple Express MVC app
 - CSS
 - EJS(Templating)
 - MongoDB
+- jQuery

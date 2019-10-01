@@ -10,11 +10,12 @@ router.post(
   [
     body('email')
       .isEmail()
+      .withMessage('Please provide correct email')
       .normalizeEmail(),
     body('name').isString(),
     body('message')
       .isLength({ min: 5, max: 400 })
-      .trim()
+      .withMessage('Please provide a message')
   ],
   contactController.sendContactInfo
 )
