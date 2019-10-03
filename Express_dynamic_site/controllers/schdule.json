@@ -1,0 +1,64 @@
+_id
+:5d8b4c981c9d440000f3dc4c
+name
+:"Jane Smith"
+time
+:"9:00AM"
+img
+:"images/speakers/speaker-thumb-one.jpg"
+subject
+:"Grow your bussiness with 5 simple rules"
+venue
+:"Auditiorium A"
+
+_id
+:5d8b4d031c9d440000f3dc4e
+name
+:"Brian Tomphson"
+time
+:"10:00AM"
+img
+:"images/speakers/speaker-thumb-two.jpg"
+subject
+:"Major changes in Web design in 2019"
+venue
+:"Auditorium A"
+
+_id
+:5d8b50401c9d440000f3dc50
+name
+:"Matt Johansson"
+time
+:"12:00AM"
+img
+:"images/speakers/speaker-thumb-three.jpg"
+subject
+:"Everything you need to know about Kuberentes"
+venue
+:"Auditorium C"
+
+_id
+:5d8b50be1c9d440000f3dc52
+name
+:"Lisa Bailey"
+time
+:"2:00PM"
+img
+:"images/speakers/speaker-thumb-four.jpg"
+subject
+:"Security in PHP 101"
+venue
+:"Auditorium A"
+
+_id
+:5d8b514b1c9d440000f3dc54
+name
+:"Johnatan Franco"
+time
+:"3:00PM"
+img
+:"images/speakers/speaker-thumb-five.jpg"
+subject
+:"How to add Redux to your React application"
+venue
+:"Auditorium B"

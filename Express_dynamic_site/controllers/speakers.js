@@ -28,6 +28,7 @@ exports.addSpeaker = (req, res, next) => {
 exports.getAllSpeakers = (req, res, next) => {
   Speaker.find()
     .then(speakers => {
+      res.send({ speakers: speakers })
       res.render('speakers', {
         pageTitle: 'Speakers',
         links: ['speakers', 'about', 'schedule', 'contact'],
@@ -38,13 +39,12 @@ exports.getAllSpeakers = (req, res, next) => {
 }
 
 exports.getSpeaker = (req, res, next) => {
-  const prodId = req.params.speakerId
-  Speaker.findById(prodId)
+  const speakerName = req.params.speakerName
+  Speaker.findById(speakerName)
     .then(speaker => {
       res.render('single-speaker', {
         speaker: speaker,
-        pageTitle: speaker.title,
-        path: '/speakers'
+        pageTitle: speaker.title
       })
       next()
     })

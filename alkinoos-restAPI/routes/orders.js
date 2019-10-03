@@ -1,23 +1,21 @@
-import express from 'express';
+import {Router} from 'express';
 import bodyParser from 'body-parser';
-const order = express();
+const router = Router();
 
-order.get('/', (req, res) => {
-  return res.send('GET request for order');
+router.get('/orders', (req, res) => {
+  return res.status(200).res.json({ request: 'GET request for router' });
 });
 
-order.get('/:orderId', (req, res) => {
+router.get('/:routerId', (req, res) => {
   return res.send('')
 });
 
-order.post('/', (req, res) => {
-  return res.send('POST request for order');
+router.put('/:orderId', (req, res) => {
+  return res.send('Update router based on its id');
 });
 
-order.put('/:orderId', (req, res) => {
-  return res.send('Update order based on its id');
+router.delete('/:orderId', (req, res) => {
+  return res.send('Delete router based on its id');
 });
 
-order.delete('/:orderId', (req, res) => {
-  return res.send('Delete order based on its id');
-});
+export default router

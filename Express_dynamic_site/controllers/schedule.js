@@ -4,6 +4,7 @@ exports.getSchedule = (req, res, next) => {
   Schedule.find()
     .then(schedule => {
       console.log(schedule)
+      res.send({ schedule: schedule })
       res.render('schedule', {
         pageTitle: 'Schedule',
         links: ['speakers', 'about', 'schedule', 'contact'],
