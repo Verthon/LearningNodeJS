@@ -1,13 +1,12 @@
-import { Router } from 'express';
-import bodyParser from 'body-parser';
-const router = Router();
+import { Router } from 'express'
+const router = Router()
 
-router.get('/book-table', (req, res) => {
-  res.status(200).res.json({ request: 'GET request for book table' });
-});
+router.get('/', (req, res) => {
+  res.json({ request: 'GET request for book table' })
+})
 
-router.post('/book-table', (req, res) => {
-  res.json({ request: 'POST request for router' });
-});
+router.post('/', (req, res) => {
+  res.json({ request: 'POST request for router' })
+})
 
-export default router;
+export default router
