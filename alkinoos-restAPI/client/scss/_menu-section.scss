@@ -1,0 +1,77 @@
+.section__menu {
+  background-color: $lighthouse;
+  @include mQ($ipad) {
+    padding-bottom: 6rem;
+  }
+}
+
+.menu {
+  @include flexColumn();
+  align-items: center;
+  &__heading {
+    @include mQ($tablet) {
+      margin: 0 0 3rem 0;
+    }
+  }
+  &__title {
+    text-align: center;
+    margin: 2rem 0 2rem 0;
+    font-family: $main-font;
+    color: $metallic-gold;
+    font-weight: 400;
+    text-decoration: underline;
+
+    @include mQ($ipad) {
+      margin: 1rem 0 1rem 0;
+    }
+  }
+  &__list {
+    -webkit-padding-start: 0;
+    @include flexColumn();
+    align-items: center;
+    padding: 0;
+    @include mQ($ipad) {
+      padding: 1rem 1rem 1rem 1rem;
+    }
+  }
+  &__description {
+    line-height: 1.2;
+
+    @include mQ($ipad) {
+      line-height: 1.7;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.25rem;
+
+    @include mQ($desktopXs) {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__item {
+    margin: 1rem 0;
+
+    @include mQ($mobile) {
+      margin: 1rem;
+    }
+
+    @include mQ($tablet) {
+      width: 90%;
+    }
+
+    @include mQ($desktopXs) {
+      width: 80%;
+    }
+
+    &__name {
+      font-family: $decorative-font;
+      margin: 0.5rem 0;
+      font-weight: 400;
+    }
+  }
+}

@@ -29,16 +29,12 @@ app.use((req, res, next) => {
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.get('/', (req, res, next) => {
-  res.send('Babel imports working')
+app.get('*', (req, res, next) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'))
 })
-
-app.use('/menu', routes.menu)
-app.use('/book-table', routes.bookTable)
-app.use('/orders', routes.orders)
 
 app.use((req, res) => {
   res.status(404).json({ success: false, message: 'Resource not found.' })
 })
 
-app.listen(3000, console.log('Listening on port 3000'))
+app.listen(8070, console.log('Listening on port 8070'))

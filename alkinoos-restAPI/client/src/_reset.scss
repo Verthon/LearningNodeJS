@@ -1,0 +1,43 @@
+@import '_variables';
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  color: $nero;
+  font-family: $main-font;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: $nero;
+  text-decoration: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+picture {
+  margin: 0;
+}

@@ -1,0 +1,24 @@
+@import "_normalize.scss";
+@import "_variables";
+@import "_reset";
+
+
+// Bootstrap and its default variables
+// @import "node_modules/bootstrap/scss/bootstrap";
+@import "_mixins";
+@import 'scss/_typography.scss';
+@import "scss/_grid.scss";
+@import "scss/_animations.scss";
+@import "scss/_nav.scss";
+@import "scss/_modal.scss";
+@import "scss/_header";
+@import "scss/_book-table";
+@import "scss/_site-navigation";
+@import "scss/_section";
+@import "scss/_menu-section";
+@import "scss/_about-section";
+@import "scss/_ingredients-section";
+@import "scss/_testimonials-section";
+@import "scss/_site-footer";
+@import "scss/_review-booking";
+@import "scss/_button.scss";

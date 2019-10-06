@@ -2,10 +2,23 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "8070",
   "dependencies": {
+    "aos": "^2.3.4",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "firebase": "^7.1.0",
+    "formik": "^1.5.8",
+    "node-sass": "^4.12.0",
     "react": "^16.10.2",
+    "react-datepicker": "^2.9.6",
     "react-dom": "^16.10.2",
-    "react-scripts": "3.2.0"
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
+    "react-router-hash-link": "^1.2.2",
+    "react-scripts": "3.2.0",
+    "react-test-renderer": "^16.10.2",
+    "redux": "^4.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -27,5 +40,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "prop-types": "^15.7.2"
   }
 }

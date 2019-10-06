@@ -1,0 +1,63 @@
+.site-header {
+  display: flex;
+  @include flexColumn();
+  padding: 0 1.5rem 3rem 1.5rem;
+
+  @include mQ($tablet) {
+    padding: 0 2.5rem 3rem 2.5rem;
+  }
+
+  @include mQ($ipad) {
+    flex-direction: row;
+  }
+
+  &__content {
+    @include mQ($ipad){
+      @include flexColumn();
+      justify-content: center;
+      align-items: flex-start;
+      order: 1;
+      flex: 50%;
+    }
+  }
+
+  &__image {
+    @include mQ($ipad) {
+      order: 2;
+      flex: 50%;
+    }
+  }
+
+  &__headline {
+    font-family: $decorative-font;
+    font-size: 1.75rem;
+    font-weight: 400;
+    margin: 2rem auto;
+    @include mQ($ipad) {
+      display: inline;
+      margin: 0;
+      font-size: 2rem;
+    }
+    @include mQ($desktopXs){
+      font-size: 2.5rem;
+    }
+  }
+
+  &__text {
+    font-size: 0.9rem;
+    margin: 2rem 0;
+    @include mQ($mobile) {
+      font-size: 1rem;
+    }
+    @include mQ($tablet){
+      margin: 1.5rem 0 4rem 0;
+    }
+    @include mQ($desktopXs) {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__btn {
+    padding: 0.75rem 2rem;
+  }
+}

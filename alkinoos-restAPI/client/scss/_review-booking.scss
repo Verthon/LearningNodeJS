@@ -1,0 +1,86 @@
+.review-booking {
+  margin: 0 auto;
+  padding: 0 0 2rem 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 600px;
+  box-shadow: $default-shadow;
+
+  @include mQ($tablet) {
+    padding: 0 0 3rem 0;
+  }
+
+  &__title {
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  &__title,
+  &__title:hover {
+    text-decoration: none;
+  }
+
+  a,
+  a:hover,
+  a:visited {
+    text-decoration: none;
+  }
+
+  &__address {
+    text-transform: uppercase;
+    line-height: 1;
+    margin: 0.15rem;
+  }
+
+  &__client {
+    font-size: 1.5rem;
+    color: $gravel-fint;
+    margin: 2.5rem 0;
+  }
+  &__name {
+    margin: 0 0.25rem 0 0;
+    color: $cavernous;
+  }
+
+  &__container {
+    width: 100%;
+    @include mQ($tablet) {
+      width: 75%;
+    }
+    @include mQ($ipad) {
+      width: 50%;
+    }
+  }
+
+  &__value {
+    margin: 0;
+    text-align: center;
+  }
+
+  &__description {
+    text-align: center;
+    color: $gravel-fint;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    margin: 0 0 1rem 0;
+    padding: 0 0 1rem 0;
+    border-right: 1px solid $gravel-fint;
+  }
+
+  &__description:last-child {
+    border: 0;
+  }
+
+  &__footer {
+    margin: 2rem 0 0 0;
+    @include mQ($tablet) {
+      margin: 3rem 0 0 0;
+    }
+  }
+
+  @include mQ($ipad) {
+    align-items: center;
+    margin: 2rem auto;
+  }
+}
