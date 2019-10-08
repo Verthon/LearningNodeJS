@@ -80,7 +80,7 @@ class BookTable extends React.Component {
   render() {
     const { booking, min, max } = this.state;
     const { location, hours } = contactInfo.info;
-
+    console.log('book-table')
     return (
       <Fragment>
         <div className="table-booking fade-in">

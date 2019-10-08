@@ -4,7 +4,7 @@ import Navbar from './Navbar'
 import db from '../base'
 
 class Menu extends Component {
-  constructor() {
+  constructor () {
     super()
     this.state = {
       appetizers: {},
@@ -15,11 +15,29 @@ class Menu extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
+    fetch('http://localhost:8070/api/menu')
+      .then(res => {
+        if (res.status !== 200) {
+          throw new Error('Failed to fetch menu')
+        }
+        return res.json()
+      })
+      .then(doc => {
+        console.log('Doc data: ', Object.values(doc.data[0]))
+        Object.values(doc.data[0]).forEach(item => {
+          this.setState({
+
+          })
+        })
+        console.log('Doc data: ', doc.data[0])
+      })
+      .catch(err => console.log(err.status))
     db.collection('menu')
       .get()
       .then(snapshot => {
         snapshot.docs.forEach(doc => {
+          console.log('Doc from Firestore: ', doc.data())
           this.setState({
             appetizers: doc.data().Appetizers,
             desserts: doc.data().Desserts,
@@ -30,48 +48,48 @@ class Menu extends Component {
       })
   }
 
-  render() {
+  render () {
     const { appetizers, desserts, salads, maindishes, links } = this.state
     return (
       <Fragment>
-        <Navbar name="Alkinoos Taverna" hashlink={false} links={links} />
-        <section id="menu" className="section menu container fade-in">
-          <h1 className="heading heading--center menu__heading">Menu</h1>
-          <div className="row">
-            <div className="section__col">
-              <article className="menu__container">
-                <h2 className="menu__title">{appetizers.category}</h2>
-                <ul className="menu__list">
+        <Navbar name='Alkinoos Taverna' hashlink={false} links={links} />
+        <section id='menu' className='section menu container fade-in'>
+          <h1 className='heading heading--center menu__heading'>Menu</h1>
+          <div className='row'>
+            <div className='section__col'>
+              <article className='menu__container'>
+                <h2 className='menu__title'>{appetizers.category}</h2>
+                <ul className='menu__list'>
                   {appetizers.app1 ? <MenuItem menu={appetizers.app1} /> : null}
                   {appetizers.app2 ? <MenuItem menu={appetizers.app2} /> : null}
                   {appetizers.app3 ? <MenuItem menu={appetizers.app3} /> : null}
                 </ul>
               </article>
             </div>
-            <div className="section__col">
-              <h2 className="menu__title">{desserts.category}</h2>
-              <ul className="menu__list">
+            <div className='section__col'>
+              <h2 className='menu__title'>{desserts.category}</h2>
+              <ul className='menu__list'>
                 {desserts.des1 ? <MenuItem menu={desserts.des1} /> : null}
                 {desserts.des2 ? <MenuItem menu={desserts.des2} /> : null}
                 {desserts.des3 ? <MenuItem menu={desserts.des3} /> : null}
               </ul>
             </div>
           </div>
-          <div className="row">
-            <div className="section__col">
-              <article className="menu__container">
-                <h2 className="menu__title">{salads.category}</h2>
-                <ul className="menu__list">
+          <div className='row'>
+            <div className='section__col'>
+              <article className='menu__container'>
+                <h2 className='menu__title'>{salads.category}</h2>
+                <ul className='menu__list'>
                   {salads.sal1 ? <MenuItem menu={salads.sal1} /> : null}
                   {salads.sal2 ? <MenuItem menu={salads.sal2} /> : null}
                 </ul>
               </article>
             </div>
 
-            <div className="section__col">
-              <article className="menu__container">
-                <h2 className="menu__title">{maindishes.category}</h2>
-                <ul className="menu__list">
+            <div className='section__col'>
+              <article className='menu__container'>
+                <h2 className='menu__title'>{maindishes.category}</h2>
+                <ul className='menu__list'>
                   {maindishes.main1 ? (
                     <MenuItem menu={maindishes.main1} />
                   ) : null}

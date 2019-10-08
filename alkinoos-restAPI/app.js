@@ -4,6 +4,8 @@ import mongoose from 'mongoose'
 import routes from './routes'
 import path from 'path'
 import dotenv from 'dotenv'
+import cors from 'cors'
+import helmet from 'helmet'
 dotenv.config()
 const app = express()
 
@@ -12,29 +14,27 @@ const MONGO_URI =
   process.env.DB_USER +
   ':' +
   process.env.DB_PASS +
-  '@cluster0-ft0n5.mongodb.net/admin?retryWrites=true&w=majority'
+  '@cluster0-ft0n5.mongodb.net/app?retryWrites=true&w=majority'
 
-mongoose.connect(MONGO_URI, { useNewUrlParser: true })
+mongoose
+  .connect(MONGO_URI, { useNewUrlParser: true })
+  .then(app.listen(8070, console.log('Listening on port 8070')))
+  .catch(error => console.log(error))
 app.use(bodyParser.json())
+//app.use(helmet())
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'OPTIONS, GET, POST, PUT, PATCH, DELETE'
-  )
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-  next()
-})
+app.use(cors())
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, '/static')))
+app.use(express.static(path.resolve('client', 'build', 'index.html')))
+
+app.use('/api/menu', routes.menu)
+app.use('/api/book-table', routes.bookTable)
 
 app.get('*', (req, res, next) => {
-  res.sendFile(path.join(__dirname + '/client/build/index.html'))
+  res.sendFile(path.resolve('client', 'build', 'index.html'))
 })
 
 app.use((req, res) => {
   res.status(404).json({ success: false, message: 'Resource not found.' })
 })
-
-app.listen(8070, console.log('Listening on port 8070'))

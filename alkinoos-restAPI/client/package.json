@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "8070",
+  "proxy": "http://localhost:8070",
   "dependencies": {
     "aos": "^2.3.4",
     "enzyme": "^3.10.0",
