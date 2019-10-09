@@ -1,7 +1,7 @@
 import { Menu } from '../model/menu'
 
 export const getMenu = (req, res, next) => {
-  Menu.find()
+  Menu.find({}, { _id: 0 })
     .then(doc => {
       if (!doc) {
         res.status(404).json({
