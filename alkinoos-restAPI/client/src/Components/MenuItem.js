@@ -4,7 +4,6 @@ import { formatPrice } from '../helpers'
 
 const MenuItem = ({ menu }) => {
   const { name, price, desc } = menu
-  console.log(name, price, desc)
   return (
     <Fragment>
       <li className="menu__item">

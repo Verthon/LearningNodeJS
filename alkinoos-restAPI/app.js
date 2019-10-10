@@ -9,6 +9,13 @@ import helmet from 'helmet'
 dotenv.config()
 const app = express()
 
+app.use(helmet())
+
+app.use(cors())
+
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+
 const MONGO_URI =
   'mongodb+srv://' +
   process.env.DB_USER +
@@ -20,10 +27,6 @@ mongoose
   .connect(MONGO_URI, { useNewUrlParser: true })
   .then(app.listen(8070, console.log('Listening on port 8070')))
   .catch(error => console.log(error))
-app.use(bodyParser.json())
-//app.use(helmet())
-
-app.use(cors())
 
 app.use(express.static(path.join(__dirname, '/static')))
 app.use(express.static(path.resolve('client', 'build', 'index.html')))

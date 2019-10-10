@@ -4,36 +4,36 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
-import React, { Fragment } from 'react';
-import { connect } from 'react-redux';
-import { Form, Formik, Field, ErrorMessage } from 'formik';
-import PropTypes from 'prop-types';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import contactInfo from '../contactInfo';
-import { sendBookingInfo } from '../actions/index';
-import Navbar from './Navbar';
-import NavItem from './NavItem';
-import bookTableImg from '../images/brooke-lark-book-table.jpg';
+import React, { Fragment } from 'react'
+import { connect } from 'react-redux'
+import { Form, Formik, Field, ErrorMessage } from 'formik'
+import PropTypes from 'prop-types'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import contactInfo from '../contactInfo'
+import { sendBookingInfo } from '../actions/index'
+import Navbar from './Navbar'
+import NavItem from './NavItem'
+import bookTableImg from '../images/brooke-lark-book-table.jpg'
 
 class BookTable extends React.Component {
   static propTypes = {
     sendData: PropTypes.func,
-    history: PropTypes.shape({ push: PropTypes.func }),
-  };
+    history: PropTypes.shape({ push: PropTypes.func })
+  }
 
   static defaultProps = {
     sendData: sendBookingInfo,
-    history: {},
-  };
+    history: {}
+  }
 
   constructor() {
-    super();
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDate = this.handleDate.bind(this);
-    this.handleGuests = this.handleGuests.bind(this);
-    this.handleName = this.handleName.bind(this);
-    this.handleEmail = this.handleEmail.bind(this);
+    super()
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleDate = this.handleDate.bind(this)
+    this.handleGuests = this.handleGuests.bind(this)
+    this.handleName = this.handleName.bind(this)
+    this.handleEmail = this.handleEmail.bind(this)
     this.state = {
       min: new Date(),
       max: new Date(),
@@ -41,46 +41,63 @@ class BookTable extends React.Component {
         date: new Date(),
         people: 1,
         name: 'John Doe',
-        email: '',
+        email: ''
       },
-      links: ['menu', 'book-table'],
-    };
+      links: ['menu', 'book-table']
+    }
   }
 
   handleDate(e) {
-    const booking = { ...this.state.booking };
-    booking.date = e;
-    console.log(e);
-    this.setState({ booking });
+    const booking = { ...this.state.booking }
+    booking.date = e
+    console.log(e)
+    this.setState({ booking })
   }
 
   handleGuests(e) {
-    const booking = { ...this.state.booking };
-    booking.people = e.target.value;
-    this.setState({ booking });
+    const booking = { ...this.state.booking }
+    booking.people = e.target.value
+    this.setState({ booking })
   }
 
   handleName(e) {
-    const booking = { ...this.state.booking };
-    booking.name = e.target.value;
-    this.setState({ booking });
+    const booking = { ...this.state.booking }
+    booking.name = e.target.value
+    this.setState({ booking })
   }
 
   handleEmail(e) {
-    const booking = { ...this.state.booking };
-    booking.email = e.target.value;
-    this.setState({ booking });
+    const booking = { ...this.state.booking }
+    booking.email = e.target.value
+    this.setState({ booking })
   }
 
   handleSubmit(e) {
-    e.preventDefault();
-    this.props.history.push({ pathname: '/review-booking' });
+    const { date, people, email, name } = this.state
+    const options = {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        email: email,
+        name: name,
+        date: date,
+        guest: people
+      })
+    }
+    e.preventDefault()
+    fetch('http://localhost:8070/api/book-table', options)
+      .then(res => res.json())
+      .then(res => console.log(res))
+      .catch(err =>
+        console.log('Error occured with sending POST req: ', err.statusText)
+      )
   }
 
   render() {
-    const { booking, min, max } = this.state;
-    const { location, hours } = contactInfo.info;
-    console.log('book-table')
+    const { booking, min, max } = this.state
+    const { location, hours } = contactInfo.info
     return (
       <Fragment>
         <div className="table-booking fade-in">
@@ -155,8 +172,7 @@ class BookTable extends React.Component {
                   <button
                     className="btn btn--dark"
                     type="submit"
-                    onClick={() => this.props.sendData(booking)}
-                  >
+                    onClick={() => this.props.sendData(booking)}>
                     Next step
                   </button>
                 </Form>
@@ -193,14 +209,16 @@ class BookTable extends React.Component {
           <footer className="table-booking__footer" />
         </div>
       </Fragment>
-    );
+    )
   }
 }
 
 // eslint-disable-next-line max-len
-const mapDispatchToProps = dispatch => ({ sendData: payload => dispatch(sendBookingInfo(payload)) });
+const mapDispatchToProps = dispatch => ({
+  sendData: payload => dispatch(sendBookingInfo(payload))
+})
 
 export default connect(
   null,
-  mapDispatchToProps,
-)(BookTable);
+  mapDispatchToProps
+)(BookTable)

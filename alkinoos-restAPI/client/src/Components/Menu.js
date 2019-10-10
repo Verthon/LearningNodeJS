@@ -1,10 +1,9 @@
 import React, { Fragment, Component } from 'react'
 import MenuItem from './MenuItem'
 import Navbar from './Navbar'
-import db from '../base'
 
 class Menu extends Component {
-  constructor() {
+  constructor () {
     super()
     this.state = {
       appetizers: false,
@@ -15,7 +14,7 @@ class Menu extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     fetch('http://localhost:8070/api/menu')
       .then(res => {
         if (res.status !== 200) {
@@ -34,19 +33,6 @@ class Menu extends Component {
         })
       })
       .catch(err => console.log(err.status))
-    // db.collection('menu')
-    //   .get()
-    //   .then(snapshot => {
-    //     snapshot.docs.forEach(doc => {
-    //       console.log('Doc from Firestore: ', doc.data())
-    //       this.setState({
-    //         appetizers: doc.data().Appetizers,
-    //         desserts: doc.data().Desserts,
-    //         salads: doc.data().Salads,
-    //         maindishes: doc.data()['Main-dishes']
-    //       })
-    //     })
-    //   })
   }
 
   render() {
@@ -62,7 +48,7 @@ class Menu extends Component {
                 <h2 className="menu__title">Appetizers</h2>
                 <ul className="menu__list">
                   {appetizers
-                    ? appetizers.map(appetizer => <MenuItem menu={appetizer} />)
+                    ? appetizers.map(appetizer => <MenuItem key={appetizer.name} menu={appetizer} />)
                     : null}
                 </ul>
               </article>
@@ -71,7 +57,7 @@ class Menu extends Component {
               <h2 className="menu__title">Desserts</h2>
               <ul className="menu__list">
                 {desserts
-                  ? desserts.map(dessert => <MenuItem menu={dessert} />)
+                  ? desserts.map(dessert => <MenuItem key={dessert.name} menu={dessert} />)
                   : null}
               </ul>
             </div>
@@ -81,7 +67,9 @@ class Menu extends Component {
               <article className="menu__container">
                 <h2 className="menu__title">Salads</h2>
                 <ul className="menu__list">
-                  {salads ? salads.map(salad => <MenuItem menu={salad}/>) : null}
+                  {salads
+                    ? salads.map(salad => <MenuItem key={salad.name} menu={salad} />)
+                    : null}
                 </ul>
               </article>
             </div>
@@ -90,7 +78,9 @@ class Menu extends Component {
               <article className="menu__container">
                 <h2 className="menu__title">Main dishes</h2>
                 <ul className="menu__list">
-                  {maindishes ? maindishes.map(maindish => <MenuItem menu={maindish}/>) : null}
+                  {maindishes
+                    ? maindishes.map(maindish => <MenuItem key={maindish.name} menu={maindish} />)
+                    : null}
                 </ul>
               </article>
             </div>
