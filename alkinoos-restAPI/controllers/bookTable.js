@@ -1,27 +1,34 @@
-import { Reservation } from '../model/reservation'
+import { Booking } from '../model/booking'
+import { validationResult } from 'express-validator'
 
-export const sendReservation = (req, res) => {
+export const saveBooking = (req, res) => {
+  res.type('application/json')
   const data = {
     name: req.body.name,
     email: req.body.email,
     date: req.body.date,
-    guests: req.body.guests
+    guests: req.body.guests,
+    errors: validationResult(req)
   }
 
-  console.log(req.body)
+  const { name, email, date, guests, errors } = data
 
-  const { name, email, date, guests } = data
+  if (!errors.isEmpty()) {
+    //console.log(errors)
+    return res.status(422).json({
+      errors: errors.array()
+    })
+  }
 
-  const reservation = new Reservation({
+  const booking = new Booking({
     name: name,
     email: email,
     date: date,
     guests: guests
   })
 
-  reservation
+  booking
     .save()
-    .then(res => console.log('Your reservation was added', res))
+    .then(res => console.log('Your booking was added', res))
     .catch(err => console.log('Error occured: ', err))
-    
 }

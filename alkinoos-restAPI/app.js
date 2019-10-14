@@ -9,11 +9,11 @@ import helmet from 'helmet'
 dotenv.config()
 const app = express()
 
-app.use(helmet())
+//app.use(helmet())
 
 app.use(cors())
 
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 const MONGO_URI =
@@ -40,4 +40,5 @@ app.get('*', (req, res, next) => {
 
 app.use((req, res) => {
   res.status(404).json({ success: false, message: 'Resource not found.' })
+  res.status(400).json({ success: false, message: '400 Bad request' })
 })

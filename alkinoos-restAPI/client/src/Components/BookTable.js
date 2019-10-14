@@ -15,7 +15,8 @@ import { sendBookingInfo } from '../actions/index'
 import Navbar from './Navbar'
 import NavItem from './NavItem'
 import bookTableImg from '../images/brooke-lark-book-table.jpg'
-
+import {handleResponseErrors} from '../helpers'
+ 
 class BookTable extends React.Component {
   static propTypes = {
     sendData: PropTypes.func,
@@ -43,14 +44,14 @@ class BookTable extends React.Component {
         name: 'John Doe',
         email: ''
       },
-      links: ['menu', 'book-table']
+      links: ['menu', 'book-table'],
+      error: null
     }
   }
 
   handleDate(e) {
     const booking = { ...this.state.booking }
     booking.date = e
-    console.log(e)
     this.setState({ booking })
   }
 
@@ -73,31 +74,37 @@ class BookTable extends React.Component {
   }
 
   handleSubmit(e) {
-    const { date, people, email, name } = this.state
+    const { date, people, email, name } = this.state.booking
     const options = {
-      headers: {
-        'Content-Type': 'application/json'
-      },
       method: 'POST',
       body: JSON.stringify({
         email: email,
         name: name,
         date: date,
-        guest: people
-      })
+        guests: people
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     }
     e.preventDefault()
     fetch('http://localhost:8070/api/book-table', options)
-      .then(res => res.json())
-      .then(res => console.log(res))
-      .catch(err =>
-        console.log('Error occured with sending POST req: ', err.statusText)
-      )
+      .then(res => {
+        if(!res.ok){
+          this.setState({err: res})
+        }
+        return res.json()
+      })
+      .then(handleResponseErrors)
+      .catch(err => {
+        console.log('Error occured with sending POST req: ', JSON.stringify(err))
+      })
   }
 
   render() {
-    const { booking, min, max } = this.state
+    const { booking, min, max, error } = this.state
     const { location, hours } = contactInfo.info
+    console.log(error)
     return (
       <Fragment>
         <div className="table-booking fade-in">
@@ -122,7 +129,9 @@ class BookTable extends React.Component {
                     onChange={this.handleName}
                     placeholder="Name"
                   />
-                  <ErrorMessage>{<div className="error">{}</div>}</ErrorMessage>
+                  <ErrorMessage>
+                    {<div className="error">{error}</div>}
+                  </ErrorMessage>
                   <label htmlFor="email" className="label">
                     Email
                   </label>

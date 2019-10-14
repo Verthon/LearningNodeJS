@@ -32,3 +32,11 @@ export const splitTime = date => {
   formatedTime = temp[3]
   return formatedTime
 }
+
+export const handleResponseErrors = res => {
+  if (!res.ok) {
+    console.log('Response inside of handleResponseErrors fn', res)
+    throw Error(res)
+  }
+  return res
+}
