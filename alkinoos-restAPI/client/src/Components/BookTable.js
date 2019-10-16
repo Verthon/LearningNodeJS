@@ -6,7 +6,7 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import { Form, Formik, Field, ErrorMessage } from 'formik'
+import { Form, Formik, Field } from 'formik'
 import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -14,9 +14,10 @@ import contactInfo from '../contactInfo'
 import { sendBookingInfo } from '../actions/index'
 import Navbar from './Navbar'
 import NavItem from './NavItem'
+import ErrorInfo from './ErrorInfo'
 import bookTableImg from '../images/brooke-lark-book-table.jpg'
-import {handleResponseErrors} from '../helpers'
- 
+import { handleResponseErrors, tomorrow } from '../helpers'
+
 class BookTable extends React.Component {
   static propTypes = {
     sendData: PropTypes.func,
@@ -39,7 +40,7 @@ class BookTable extends React.Component {
       min: new Date(),
       max: new Date(),
       booking: {
-        date: new Date(),
+        date: tomorrow(),
         people: 1,
         name: 'John Doe',
         email: ''
@@ -89,15 +90,15 @@ class BookTable extends React.Component {
     }
     e.preventDefault()
     fetch('http://localhost:8070/api/book-table', options)
+      .then(res => res.json())
       .then(res => {
-        if(!res.ok){
-          this.setState({err: res})
-        }
-        return res.json()
+        this.setState({ error: res })
       })
-      .then(handleResponseErrors)
       .catch(err => {
-        console.log('Error occured with sending POST req: ', JSON.stringify(err))
+        console.log(
+          'Error occured with sending POST req: ',
+          JSON.stringify(err)
+        )
       })
   }
 
@@ -121,6 +122,7 @@ class BookTable extends React.Component {
                   <label className="label" htmlFor="name">
                     Name
                   </label>
+                  <ErrorInfo error={error ? error.errors : false} />
                   <Field
                     className="table-booking__input"
                     type="text"
@@ -129,9 +131,6 @@ class BookTable extends React.Component {
                     onChange={this.handleName}
                     placeholder="Name"
                   />
-                  <ErrorMessage>
-                    {<div className="error">{error}</div>}
-                  </ErrorMessage>
                   <label htmlFor="email" className="label">
                     Email
                   </label>
@@ -152,7 +151,7 @@ class BookTable extends React.Component {
                     selected={booking.date}
                     onChange={this.handleDate}
                     showTimeSelect
-                    minDate={new Date()}
+                    minDate={tomorrow()}
                     timeFormat="HH"
                     timeIntervals={60}
                     minTime={min.setHours(11)}

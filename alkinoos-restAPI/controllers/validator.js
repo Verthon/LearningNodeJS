@@ -8,7 +8,7 @@ export const validateBooking = [
     .custom(value => {
       return Booking.find({ email: value }).then(booking => {
         if (booking) {
-          return Promise.reject(new Error('Email already used'))
+          return Promise.reject(new Error('Given email address is already used.'))
         }
       })
     }),
@@ -16,5 +16,10 @@ export const validateBooking = [
   body('date')
     .isString()
     .isAfter(),
-  body('guests').isNumeric()
+  body('guests').isNumeric().custom(value => {
+    if (value > 4 || value < 1) {
+      return Promise.reject(new Error('Number of guests must be between 1 and 4.'))
+    }
+    return
+  })
 ]

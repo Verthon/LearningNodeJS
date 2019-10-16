@@ -40,3 +40,5 @@ export const handleResponseErrors = res => {
   }
   return res
 }
+
+export const tomorrow = () => new Date(new Date().setDate(new Date().getDate() + 1))

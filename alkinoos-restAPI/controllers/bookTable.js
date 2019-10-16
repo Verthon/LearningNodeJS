@@ -14,7 +14,6 @@ export const saveBooking = (req, res) => {
   const { name, email, date, guests, errors } = data
 
   if (!errors.isEmpty()) {
-    //console.log(errors)
     return res.status(422).json({
       errors: errors.array()
     })
