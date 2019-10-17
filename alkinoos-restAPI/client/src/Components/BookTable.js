@@ -16,7 +16,7 @@ import Navbar from './Navbar'
 import NavItem from './NavItem'
 import ErrorInfo from './ErrorInfo'
 import bookTableImg from '../images/brooke-lark-book-table.jpg'
-import { handleResponseErrors, tomorrow } from '../helpers'
+import { tomorrow } from '../helpers'
 
 class BookTable extends React.Component {
   static propTypes = {
@@ -37,13 +37,11 @@ class BookTable extends React.Component {
     this.handleName = this.handleName.bind(this)
     this.handleEmail = this.handleEmail.bind(this)
     this.state = {
-      min: new Date(),
-      max: new Date(),
       booking: {
         date: tomorrow(),
         people: 1,
         name: 'John Doe',
-        email: ''
+        email: 'jdoe@gty.xx'
       },
       links: ['menu', 'book-table'],
       error: null
@@ -58,7 +56,7 @@ class BookTable extends React.Component {
 
   handleGuests(e) {
     const booking = { ...this.state.booking }
-    booking.people = e.target.value
+    booking.people = parseInt(e.target.value)
     this.setState({ booking })
   }
 
@@ -103,9 +101,8 @@ class BookTable extends React.Component {
   }
 
   render() {
-    const { booking, min, max, error } = this.state
+    const { booking, error } = this.state
     const { location, hours } = contactInfo.info
-    console.log(error)
     return (
       <Fragment>
         <div className="table-booking fade-in">
@@ -122,7 +119,7 @@ class BookTable extends React.Component {
                   <label className="label" htmlFor="name">
                     Name
                   </label>
-                  <ErrorInfo error={error ? error.errors : false} />
+                  <ErrorInfo error={error ? error.errors : null} />
                   <Field
                     className="table-booking__input"
                     type="text"
@@ -154,8 +151,8 @@ class BookTable extends React.Component {
                     minDate={tomorrow()}
                     timeFormat="HH"
                     timeIntervals={60}
-                    minTime={min.setHours(11)}
-                    maxTime={max.setHours(22)}
+                    minTime={booking.date.setHours(11)}
+                    maxTime={booking.date.setHours(22)}
                     dateFormat="MMMM dd, yyyy h aa"
                     timeCaption="Time"
                     placeholderText="Click and choose the date"
@@ -170,7 +167,7 @@ class BookTable extends React.Component {
                     required
                     placeholder="Number of guests"
                     min="1"
-                    max="8"
+                    max="4"
                     onChange={this.handleGuests}
                   />
                   <p className="text table-booking__reminder">

@@ -16,6 +16,8 @@ const bookingSchema = new Schema({
   },
   guests: {
     type: Number,
+    min: 1,
+    max: 4,
     required: true
   }
 })

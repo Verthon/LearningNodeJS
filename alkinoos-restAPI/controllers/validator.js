@@ -17,9 +17,9 @@ export const validateBooking = [
     .isString()
     .isAfter(),
   body('guests').isNumeric().custom(value => {
-    if (value > 4 || value < 1) {
+    if (value < 1 || value > 4) {
       return Promise.reject(new Error('Number of guests must be between 1 and 4.'))
     }
-    return
+    return true
   })
 ]
