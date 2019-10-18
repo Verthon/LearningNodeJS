@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const Modal = ({ show }) => {
-  const activeClassName = show ? 'modal-book--active' : 'modal-book--disabled';
+  const activeClassName = show ? 'modal-book--active' : 'modal-book--disabled'
   return (
     <div className={`modal-book ${activeClassName}`}>
       <article className="modal-book__content fade-in">
@@ -19,11 +19,11 @@ const Modal = ({ show }) => {
         </Link>
       </article>
     </div>
-  );
-};
+  )
+}
 
-Modal.propTypes = { show: PropTypes.bool };
+Modal.propTypes = { show: PropTypes.bool }
 
-Modal.defaultProps = { show: false };
+Modal.defaultProps = { show: false }
 
-export default Modal;
+export default Modal

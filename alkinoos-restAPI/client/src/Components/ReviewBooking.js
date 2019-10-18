@@ -1,28 +1,28 @@
 /* eslint-disable react/no-unused-state */
-import React, { Fragment, Component } from 'react';
-import { Link } from 'react-router-dom';
-import propTypes from 'prop-types';
-import { connect } from 'react-redux';
-import contactInfo from '../contactInfo';
-import { splitDate, splitTime, formatDate } from '../helpers';
-import Modal from './Modal';
-import about from '../images/brooke-lark-about.jpg';
+import React, { Fragment, Component } from 'react'
+import { Link } from 'react-router-dom'
+import propTypes from 'prop-types'
+import { connect } from 'react-redux'
+import contactInfo from '../contactInfo'
+import { splitDate, splitTime, formatDate } from '../helpers'
+import Modal from './Modal'
+import about from '../images/brooke-lark-about.jpg'
 
 class ReviewBooking extends Component {
   constructor(props) {
-    super(props);
-    this.state = { show: false, booking: {} };
+    super(props)
+    this.state = { show: false, booking: {} }
   }
 
   render() {
-    console.log(this.props);
-    const { street, number, code, city, province } = contactInfo.info.location;
-    const { name, people, date } = this.props;
-    const { show } = this.state;
+    console.log(this.props)
+    const { street, number, code, city, province } = contactInfo.info.location
+    const { name, people, date } = this.props
+    const { show } = this.state
 
     const showModal = () => {
-      this.setState({ show: true });
-    };
+      this.setState({ show: true })
+    }
 
     return (
       <Fragment>
@@ -70,33 +70,33 @@ class ReviewBooking extends Component {
           </footer>
         </article>
       </Fragment>
-    );
+    )
   }
 }
 
-const mapStateToProps = (state) => {
-  const { booking } = state;
-  return booking;
-};
+const mapStateToProps = state => {
+  const { booking } = state
+  return booking
+}
 
 ReviewBooking.propTypes = {
   location: propTypes.shape({
     pathname: propTypes.string,
-    search: propTypes.string,
+    search: propTypes.string
   }),
   name: propTypes.string,
   people: propTypes.number,
-  date: propTypes.instanceOf(Date),
-};
+  date: propTypes.instanceOf(Date)
+}
 
 ReviewBooking.defaultProps = {
   location: propTypes.shape({
     pathname: propTypes.string,
-    search: propTypes.string,
+    search: propTypes.string
   }),
   name: 'John Doe',
   people: 1,
-  date: new Date(),
-};
+  date: new Date()
+}
 
-export default connect(mapStateToProps)(ReviewBooking);
+export default connect(mapStateToProps)(ReviewBooking)
