@@ -2,17 +2,12 @@
 /* eslint-disable no-underscore-dangle */
 import { createStore } from 'redux'
 import reducers from '../reducers'
+import { loadLocalStorageState } from '../helpers'
 
-const saveToLocalStorage = (state) => {
-  try {
-    const serializedState = JSON.stringify(state)
-    localStorage.setItem('state', serializedState)
-  } catch (e) {
-    console.log(e)
-  }
-}
+const persistedState = loadLocalStorageState()
 
 export const store = createStore(
   reducers,
+  persistedState,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )

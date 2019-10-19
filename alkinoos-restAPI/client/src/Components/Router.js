@@ -1,13 +1,12 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import Home from './Home';
-import Menu from './Menu';
-import BookTable from './BookTable';
-import NotFound from './NotFound';
-import ReviewBooking from './ReviewBooking';
-import { store } from '../store/store';
-
+import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import Home from './Home'
+import Menu from './Menu'
+import BookTable from './BookTable'
+import NotFound from './NotFound'
+import ReviewBooking from './ReviewBooking'
+import { store } from '../store/store'
 
 const Router = () => (
   <Provider store={store}>
@@ -21,6 +20,6 @@ const Router = () => (
       </Switch>
     </BrowserRouter>
   </Provider>
-);
+)
 
-export default Router;
+export default Router

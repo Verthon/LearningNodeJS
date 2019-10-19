@@ -41,4 +41,30 @@ export const handleResponseErrors = res => {
   return res
 }
 
-export const tomorrow = () => new Date(new Date().setDate(new Date().getDate() + 1))
+export const loadLocalStorageState = () => {
+  try {
+    const serializedState = localStorage.getItem('state')
+    if (serializedState === null) {
+      return undefined
+    }
+    return JSON.parse(serializedState)
+  } catch (err) {
+    return undefined
+  }
+}
+
+export const saveLocalStorageState = state => {
+  try {
+    const serializedState = JSON.stringify(state)
+    localStorage.setItem('state', serializedState)
+  } catch (err) {}
+}
+
+export const tomorrow = () => {
+  const today = new Date()
+  const tomorrow = new Date()
+  tomorrow.setDate(today.getDate() + 1)
+  return tomorrow
+}
+
+//new Date(new Date().setDate(new Date().getDate() + 1))

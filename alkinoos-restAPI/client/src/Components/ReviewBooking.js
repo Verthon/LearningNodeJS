@@ -9,15 +9,15 @@ import Modal from './Modal'
 import about from '../images/brooke-lark-about.jpg'
 
 class ReviewBooking extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = { show: false, booking: {} }
   }
 
-  render() {
+  render () {
     console.log(this.props)
     const { street, number, code, city, province } = contactInfo.info.location
-    const { name, people, date } = this.props
+    const { name, people, date } = this.props.booking
     const { show } = this.state
 
     const showModal = () => {

@@ -16,7 +16,7 @@ import Navbar from './Navbar'
 import NavItem from './NavItem'
 import ErrorInfo from './ErrorInfo'
 import bookTableImg from '../images/brooke-lark-book-table.jpg'
-import { tomorrow } from '../helpers'
+import { tomorrow, saveLocalStorageState } from '../helpers'
 
 class BookTable extends React.Component {
   static propTypes = {
@@ -73,31 +73,33 @@ class BookTable extends React.Component {
   }
 
   handleSubmit(e) {
-    const { date, people, email, name } = this.state.booking
-    const options = {
-      method: 'POST',
-      body: JSON.stringify({
-        email: email,
-        name: name,
-        date: date,
-        guests: people
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
     e.preventDefault()
-    fetch('http://localhost:8070/api/book-table', options)
-      .then(res => res.json())
-      .then(res => {
-        this.setState({ error: res })
-      })
-      .catch(err => {
-        console.log(
-          'Error occured with sending POST req: ',
-          JSON.stringify(err)
-        )
-      })
+    saveLocalStorageState(this.state)
+    this.props.history.push({ pathname: '/review-booking' })
+    // const { date, people, email, name } = this.state.booking
+    // const options = {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //     email: email,
+    //     name: name,
+    //     date: date,
+    //     guests: people
+    //   }),
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // }
+    // fetch('http://localhost:8070/api/book-table', options)
+    //   .then(res => res.json())
+    //   .then(res => {
+    //     this.setState({ error: res })
+    //   })
+    //   .catch(err => {
+    //     console.log(
+    //       'Error occured with sending POST req: ',
+    //       JSON.stringify(err)
+    //     )
+    //   })
   }
 
   render() {
@@ -151,8 +153,8 @@ class BookTable extends React.Component {
                     minDate={tomorrow()}
                     timeFormat="HH"
                     timeIntervals={60}
-                    minTime={booking.date.setHours(11)}
-                    maxTime={booking.date.setHours(22)}
+                    minTime={new Date().setHours(11)}
+                    maxTime={new Date().setHours(22)}
                     dateFormat="MMMM dd, yyyy h aa"
                     timeCaption="Time"
                     placeholderText="Click and choose the date"
