@@ -4,18 +4,55 @@ import { Link } from 'react-router-dom'
 import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import contactInfo from '../contactInfo'
-import { splitDate, splitTime, formatDate } from '../helpers'
+import { splitDate, splitTime, formatDate, convertToDate } from '../helpers'
 import Modal from './Modal'
 import about from '../images/brooke-lark-about.jpg'
 
 class ReviewBooking extends Component {
   constructor (props) {
     super(props)
-    this.state = { show: false, booking: {} }
+    this.state = { 
+      show: false, 
+      booking: {},
+      error: false,
+    }
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const { date, people, email, name } = this.props.booking
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email,
+        name: name,
+        date: date,
+        guests: people
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    fetch('http://localhost:8070/api/book-table', options)
+      .then(res => {
+        if(!res.ok){
+          throw res
+        }
+        res.json()
+      })
+      .then(res => {
+        console.log('Res inside of 2nd then', res)
+        localStorage.removeItem('booking')
+        //this.setState({ error: res })
+      })
+      .catch(err => {
+        console.log(
+          'Error occured with sending POST req: ', err
+        )
+      })
   }
 
   render () {
-    console.log(this.props)
     const { street, number, code, city, province } = contactInfo.info.location
     const { name, people, date } = this.props.booking
     const { show } = this.state
@@ -42,13 +79,13 @@ class ReviewBooking extends Component {
             </div>
             <div className="section__col section__col--flexible">
               <p className="review-booking__value">
-                {splitDate(formatDate(date))}
+                {splitDate(formatDate(convertToDate(date)))}
               </p>
               <p className="review-booking__description">Date</p>
             </div>
             <div className="section__col section__col--flexible">
               <p className="review-booking__value">
-                {splitTime(formatDate(date))}
+                {splitTime(formatDate(convertToDate(date)))}
               </p>
               <p className="review-booking__description">Time</p>
             </div>
@@ -59,15 +96,15 @@ class ReviewBooking extends Component {
           <p className="review-booking__address">
             {city}, {province}, {code}{' '}
           </p>
-          <footer className="review-booking__footer">
+          <form onSubmit={this.handleSubmit} className="review-booking__footer">
             <button className="btn btn--light" type="button">
               <Link to="/book-table">Edit booking</Link>
             </button>
 
-            <button className="btn btn--dark" onClick={showModal} type="button">
+            <button className="btn btn--dark" onClick={showModal} type="submit">
               Confirm Booking
             </button>
-          </footer>
+          </form>
         </article>
       </Fragment>
     )
@@ -75,8 +112,7 @@ class ReviewBooking extends Component {
 }
 
 const mapStateToProps = state => {
-  const { booking } = state
-  return booking
+  return state
 }
 
 ReviewBooking.propTypes = {
@@ -94,8 +130,8 @@ ReviewBooking.defaultProps = {
     pathname: propTypes.string,
     search: propTypes.string
   }),
-  name: 'John Doe',
-  people: 1,
+  name: 'Jane Doe',
+  people: 3,
   date: new Date()
 }
 

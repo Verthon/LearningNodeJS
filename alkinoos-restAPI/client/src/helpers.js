@@ -43,7 +43,7 @@ export const handleResponseErrors = res => {
 
 export const loadLocalStorageState = () => {
   try {
-    const serializedState = localStorage.getItem('state')
+    const serializedState = localStorage.getItem('booking')
     if (serializedState === null) {
       return undefined
     }
@@ -56,7 +56,7 @@ export const loadLocalStorageState = () => {
 export const saveLocalStorageState = state => {
   try {
     const serializedState = JSON.stringify(state)
-    localStorage.setItem('state', serializedState)
+    localStorage.setItem('booking', serializedState)
   } catch (err) {}
 }
 
@@ -65,6 +65,10 @@ export const tomorrow = () => {
   const tomorrow = new Date()
   tomorrow.setDate(today.getDate() + 1)
   return tomorrow
+}
+
+export const convertToDate = date => {
+  return new Date(date)
 }
 
 //new Date(new Date().setDate(new Date().getDate() + 1))

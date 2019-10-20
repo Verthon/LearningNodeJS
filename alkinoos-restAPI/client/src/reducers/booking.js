@@ -3,7 +3,7 @@ import { SEND_BOOKING_INFO } from '../actions'
 const initialState = {
   booking: {
     date: new Date(),
-    people: 1,
+    people: 2,
     name: 'John Doe',
     email: 'johndoe@xx.ox'
   }
@@ -12,7 +12,7 @@ const initialState = {
 export const booking = (state = initialState, action) => {
   switch (action.type) {
     case SEND_BOOKING_INFO:
-      return (state = { ...state, booking: action.payload })
+      return { ...state, ...action.payload }
     default:
       return state
   }

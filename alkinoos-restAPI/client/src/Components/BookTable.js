@@ -16,7 +16,7 @@ import Navbar from './Navbar'
 import NavItem from './NavItem'
 import ErrorInfo from './ErrorInfo'
 import bookTableImg from '../images/brooke-lark-book-table.jpg'
-import { tomorrow, saveLocalStorageState } from '../helpers'
+import { tomorrow, saveLocalStorageState, convertToDate } from '../helpers'
 
 class BookTable extends React.Component {
   static propTypes = {
@@ -40,11 +40,19 @@ class BookTable extends React.Component {
       booking: {
         date: tomorrow(),
         people: 1,
-        name: 'John Doe',
-        email: 'jdoe@gty.xx'
+        name: '',
+        email: ''
       },
       links: ['menu', 'book-table'],
       error: null
+    }
+  }
+
+  componentDidMount () {
+    const data = JSON.parse(localStorage.getItem('booking'))
+    if(data) {
+      data.booking.date = convertToDate(data.booking.date)
+      this.setState({booking: data.booking})
     }
   }
 
@@ -74,32 +82,8 @@ class BookTable extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    saveLocalStorageState(this.state)
+    saveLocalStorageState({booking: this.state.booking})
     this.props.history.push({ pathname: '/review-booking' })
-    // const { date, people, email, name } = this.state.booking
-    // const options = {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     email: email,
-    //     name: name,
-    //     date: date,
-    //     guests: people
-    //   }),
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // }
-    // fetch('http://localhost:8070/api/book-table', options)
-    //   .then(res => res.json())
-    //   .then(res => {
-    //     this.setState({ error: res })
-    //   })
-    //   .catch(err => {
-    //     console.log(
-    //       'Error occured with sending POST req: ',
-    //       JSON.stringify(err)
-    //     )
-    //   })
   }
 
   render() {
@@ -127,6 +111,7 @@ class BookTable extends React.Component {
                     type="text"
                     required
                     name="name"
+                    value={booking.name}
                     onChange={this.handleName}
                     placeholder="Name"
                   />
@@ -138,6 +123,7 @@ class BookTable extends React.Component {
                     type="email"
                     name="email"
                     required
+                    value={booking.email}
                     onChange={this.handleEmail}
                     placeholder="email"
                   />
@@ -170,6 +156,7 @@ class BookTable extends React.Component {
                     placeholder="Number of guests"
                     min="1"
                     max="4"
+                    value={booking.people}
                     onChange={this.handleGuests}
                   />
                   <p className="text table-booking__reminder">

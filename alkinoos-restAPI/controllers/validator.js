@@ -6,7 +6,7 @@ export const validateBooking = [
     .isEmail()
     .normalizeEmail()
     .custom(value => {
-      return Booking.find({ email: value }).then(booking => {
+      return Booking.exists({ email: value }).then(booking => {
         if (booking) {
           return Promise.reject(new Error('Given email address is already used.'))
         }
