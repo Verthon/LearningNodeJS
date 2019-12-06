@@ -57,7 +57,7 @@ export const saveLocalStorageState = state => {
   try {
     const serializedState = JSON.stringify(state)
     localStorage.setItem('booking', serializedState)
-  } catch (err) {}
+  } catch (err) { }
 }
 
 export const tomorrow = () => {
