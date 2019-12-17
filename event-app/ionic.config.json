@@ -1,5 +1,5 @@
 {
-  "name": "Event app",
+  "name": "event-app",
   "integrations": {},
-  "type": "angular"
+  "type": "ionic-angular"
 }
