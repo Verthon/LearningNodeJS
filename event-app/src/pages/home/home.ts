@@ -22,8 +22,9 @@ export class HomePage {
     console.log('ionViewDidLoad HomePage');
   }
 
-  navigateTo(){
-    this.navCtrl.push('About')
+  navigateToAboutPage(){
+    console.log('Function fires')
+    this.navCtrl.push('AboutPage')
   }
 
 }
