@@ -4,7 +4,10 @@ import Header from '../components/header'
 
 const Home = () => (
   <Layout title="Zou Farm" links={['Home', 'Blog', 'Test']}>
-    <Header title="A New Way to Invest in Agriculture" />
+    <Header
+      title="A New Way to Invest in Agriculture"
+      description="Zou provides farmes, ranchers, private foresters, and agricultural producers with online self service applications and educational materials."
+    />
 
     <style jsx>{`
       .hero {
