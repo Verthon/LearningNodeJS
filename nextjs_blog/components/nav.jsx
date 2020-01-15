@@ -17,8 +17,6 @@ const Nav = ({ links }) => (
     <style jsx>{`
       :global(body) {
         margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
-          Helvetica, sans-serif;
       }
       nav {
         text-align: center;
