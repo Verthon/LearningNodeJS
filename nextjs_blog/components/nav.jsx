@@ -1,10 +1,41 @@
 import React from 'react'
 import Link from 'next/link'
+import Logo from './styles/Logo'
+import styled from 'styled-components'
+
+const Navigation = styled.nav`
+  margin: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  svg {
+    width: 4rem;
+  }
+
+  li {
+    margin: 0 1rem;
+  }
+
+  a {
+    color: ${props => props.theme.black};
+  }
+`
 
 const Nav = ({ links }) => (
-  <nav>
+  <Navigation>
+    <Link href="/">
+      <a>
+        <Logo />
+      </a>
+    </Link>
     <ul>
-      <li><Link href="/"><a>k</a></Link></li>
       {links.map(({ href, label }) => (
         <li key={label}>
           <Link href={href}>
@@ -13,32 +44,7 @@ const Nav = ({ links }) => (
         </li>
       ))}
     </ul>
-
-    <style jsx>{`
-      :global(body) {
-        margin: 0;
-      }
-      nav {
-        text-align: center;
-      }
-      ul {
-        display: flex;
-        justify-content: space-between;
-      }
-      nav > ul {
-        padding: 4px 16px;
-      }
-      li {
-        display: flex;
-        padding: 6px 8px;
-      }
-      a {
-        color: #067df7;
-        text-decoration: none;
-        font-size: 13px;
-      }
-    `}</style>
-  </nav>
+  </Navigation>
 )
 
 export default Nav

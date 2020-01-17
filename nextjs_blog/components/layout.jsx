@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import Nav from './nav'
-import { ThemeProvider, injectGlobal } from 'styled-components'
+import { ThemeProvider, createGlobalStyle } from 'styled-components'
 
 const Layout = ({ title, links, children }) => {
   const theme = {
@@ -14,8 +14,27 @@ const Layout = ({ title, links, children }) => {
     text: '#263238',
     textlighter: '#324148',
   }
+
+const GlobalStyle = createGlobalStyle`
+    html {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      margin: 0;
+      font-family: ${theme.mainfont};
+      color: ${props => props.theme.text};
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+  `
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyle/>
       <Head>
         <title>{title || 'Home'}</title>
         <link rel="icon" href="/favicon.ico" />
