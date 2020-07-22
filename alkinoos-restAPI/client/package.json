@@ -1,48 +1,90 @@
 {
-  "name": "client",
-  "version": "0.1.0",
+  "name": "restaurant-site",
+  "version": "0.2.0",
   "private": true,
-  "proxy": "http://localhost:8070",
+  "homepage": "https://alkinoos-taverna.netlify.com",
   "dependencies": {
-    "aos": "^2.3.4",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
-    "firebase": "^7.1.0",
-    "formik": "^1.5.8",
-    "node-sass": "^4.12.0",
-    "react": "^16.10.2",
-    "react-datepicker": "^2.9.6",
-    "react-dom": "^16.10.2",
-    "react-redux": "^7.1.1",
-    "react-router-dom": "^5.1.2",
-    "react-router-hash-link": "^1.2.2",
-    "react-scripts": "3.2.0",
-    "react-test-renderer": "^16.10.2",
-    "redux": "^4.0.4"
+    "@brainhubeu/react-carousel": "^1.16.2",
+    "@testing-library/dom": "^7.5.7",
+    "@testing-library/jest-dom": "^5.8.0",
+    "@types/aos": "^3.0.3",
+    "@types/brainhubeu__react-carousel": "^1.15.0",
+    "@types/jest": "^26.0.4",
+    "@types/node": "^14.0.23",
+    "@types/react": "^16.9.43",
+    "@types/react-datepicker": "^3.0.2",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/react-router-hash-link": "^1.2.1",
+    "animate.css": "^4.1.0",
+    "aos": "^3.0.0-beta.6",
+    "dayjs": "^1.8.26",
+    "dotenv": "6.0.0",
+    "dotenv-expand": "4.2.0",
+    "emailjs-com": "^2.4.1",
+    "framer-motion": "^1.11.0",
+    "react": "^16.13.1",
+    "react-datepicker": "^2.15.0",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-router-hash-link": "^1.2.1",
+    "react-scripts": "3.4.1",
+    "react-toastify": "^5.5.0",
+    "typescript": "^3.9.6"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && echo '/*    /index.html   200' > build/_redirects",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "deploy": "npm run build && netlify deploy",
+    "lint": "eslint ."
   },
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+  "standard": {
+    "ignore": [
+      "node_modules",
+      "build",
+      "public"
     ]
   },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "devDependencies": {
+    "@testing-library/react": "^9.5.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "file-loader": "^6.0.0",
     "jest": "^24.9.0",
-    "prop-types": "^15.7.2"
+    "node-sass": "^4.14.1",
+    "prettier": "1.18.2",
+    "react-test-renderer": "^16.13.1",
+    "ts-jest": "^26.1.3",
+    "url-loader": "^4.1.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+      "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$",
+      "^.+\\.module\\.(css|sass|scss)$"
+    ],
+    "moduleNameMapper": {
+      "^react-native$": "react-native-web",
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+    }
   }
 }

@@ -1,0 +1,63 @@
+@font-face {
+  font-family: 'Yeseva One';
+  src: local('Yeseva One'), url(../assets/fonts/YesevaOne-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: local('Open Sans'), url(../assets/fonts/OpenSans-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans Light';
+  src: local('Open Sans Light'), url(../assets/fonts/OpenSans-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans SemiBold';
+  src: local('Open Sans SemiBold'), url(../assets/fonts/OpenSans-SemiBold.ttf) format('truetype');
+}
+
+
+// main theme
+$ratio: 1.618;
+$color-primary: hsl(45.9,64.6%,52.4%);
+$color-light: hsl(43.6,21.6%,98%);
+$color-light-1: hsl(43.6,21.6%,95%);
+$color-light-2: hsl(43.6,21.6%,90%);
+$color-light-3: hsl(43.6,21.6%,85%);
+$color-dark: hsl(28.6,60%,6.9%);
+$color-dark-1: hsl(28.6,10%,16.9%);
+$color-dark-2: hsl(28.6,10%,23.9%);
+$color-dark-3: hsl(28.6,10%,33.9%);
+
+$color-error: hsl(357.4,36.9%,36.7%);
+$color-error-1: hsl(357.4,36.9%,66.7%);
+
+$color-table: hsl(43.6,21.6%,97%);
+$color-white: hsl(0,0%,100%);
+
+$color-gray-2: hsl(0,0%,73.3%);
+$color-gray-3: hsl(0,0%,80%);
+
+$black: #000000;
+$default-shadow: 1px 1px 3px hsla(0, 0%, 0%, 0.4);
+$shadow-light: 0 1px 1px hsla(0, 0%, 0%, 0.2);
+
+//Media Queries vars
+$mobile: 350px;
+$nexus: 500px;
+$tablet: 450px;
+$ipad: 768px;
+$ipadPro: 1024px;
+$desktopXs: 1200px;
+$desktopSm: 1400px;
+$desktopLg: 1920px;
+$desktopXl: 2560px;
+$desktopXXl: 4096px;
+
+$font: 'Open Sans', sans-serif;
+$font-light: 'Open Sans Light', sans-serif;
+$font-semi-bold: 'Open Sans SemiBold', sans-serif;
+$font-secondary: 'Yeseva One', serif;
+
